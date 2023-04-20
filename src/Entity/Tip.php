@@ -26,6 +26,12 @@ class Tip
     #[ORM\Column(type: Types::BIGINT, nullable: true)]
     private ?string $likeNumber = null;
 
+    #[ORM\ManyToOne(inversedBy: 'tips')]
+    private ?User $user = null;
+
+    #[ORM\ManyToOne(inversedBy: 'tips')]
+    private ?Article $article = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +81,30 @@ class Tip
     public function setLikeNumber(?string $likeNumber): self
     {
         $this->likeNumber = $likeNumber;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->article;
+    }
+
+    public function setArticle(?Article $article): self
+    {
+        $this->article = $article;
 
         return $this;
     }

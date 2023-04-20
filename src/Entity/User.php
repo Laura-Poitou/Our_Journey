@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $picture = null;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Comment::class)]
+    private Collection $comments;
+
+    #[ORM\ManyToMany(targetEntity: Traveler::class, inversedBy: 'users')]
+    private Collection $travelers;
+
+    #[ORM\ManyToMany(targetEntity: Travel::class, inversedBy: 'users')]
+    private Collection $travels;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Tip::class)]
+    private Collection $tips;
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+        $this->travelers = new ArrayCollection();
+        $this->travels = new ArrayCollection();
+        $this->tips = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -158,6 +180,114 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPicture(?string $picture): self
     {
         $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Traveler>
+     */
+    public function getTravelers(): Collection
+    {
+        return $this->travelers;
+    }
+
+    public function addTraveler(Traveler $traveler): self
+    {
+        if (!$this->travelers->contains($traveler)) {
+            $this->travelers->add($traveler);
+        }
+
+        return $this;
+    }
+
+    public function removeTraveler(Traveler $traveler): self
+    {
+        $this->travelers->removeElement($traveler);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Travel>
+     */
+    public function getTravels(): Collection
+    {
+        return $this->travels;
+    }
+
+    public function addTravel(Travel $travel): self
+    {
+        if (!$this->travels->contains($travel)) {
+            $this->travels->add($travel);
+        }
+
+        return $this;
+    }
+
+    public function removeTravel(Travel $travel): self
+    {
+        $this->travels->removeElement($travel);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tip>
+     */
+    public function getTips(): Collection
+    {
+        return $this->tips;
+    }
+
+    public function addTip(Tip $tip): self
+    {
+        if (!$this->tips->contains($tip)) {
+            $this->tips->add($tip);
+            $tip->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTip(Tip $tip): self
+    {
+        if ($this->tips->removeElement($tip)) {
+            // set the owning side to null (unless already changed)
+            if ($tip->getUser() === $this) {
+                $tip->setUser(null);
+            }
+        }
 
         return $this;
     }

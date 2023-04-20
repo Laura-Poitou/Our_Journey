@@ -20,6 +20,12 @@ class Comment
     #[ORM\Column]
     private ?\DateTimeImmutable $publishedDate = null;
 
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?Article $Article = null;
+
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +51,30 @@ class Comment
     public function setPublishedDate(\DateTimeImmutable $publishedDate): self
     {
         $this->publishedDate = $publishedDate;
+
+        return $this;
+    }
+
+    public function getArticle(): ?Article
+    {
+        return $this->Article;
+    }
+
+    public function setArticle(?Article $Article): self
+    {
+        $this->Article = $Article;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
