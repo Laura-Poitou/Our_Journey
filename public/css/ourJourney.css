@@ -1,5 +1,5 @@
 .navbar-custom {
-    background-color: #f6efa6c2;
+    background-color: rgb(255, 242, 204);
 }
 
 #title {
@@ -7,7 +7,22 @@
     font-weight: bold;
     font-family:Georgia, 'Times New Roman', Times, serif;
     font-size: 1.3rem;
+    white-space: normal;
+    
+}
 
+.titleContent,
+.logo,
+.buttonMenu {
+    width: 6rem;
+}
+
+.logo {
+    text-align: center;
+}
+
+.navvar-brand{
+    white-space: normal;
 }
 
 #navbarNav,
@@ -32,4 +47,24 @@
 .navbar-custom .navbar-toggler {
     color: rgba(246, 171, 108,.55);
     border-color: rgba(246, 171, 108);
+}
+
+
+@media (min-width:992px) {
+    .navbar-expand-lg .navbar-collapse {
+        display: flex!important;
+        flex-basis: auto;
+        flex-direction: row-reverse;
+        max-width: max-content;
+        flex-direction: row-reverse;
+    }
+
+    .buttonMenu {
+        display: none!important;
+    }
+
+    .logo {
+        order: 1;
+    }
+
 }
