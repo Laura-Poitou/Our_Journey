@@ -21,86 +21,120 @@
     </head>
 
     <body>
+        <div class="pageContainer">
 
-        {# Nav Bar #}
-        <nav class="navbar navbar-custom navbar-expand-lg">
-            <div class="container-fluid" id="navContainer">
-                <div class="titleContent">
-                    <a class="navbar-brand" id="title" href="{{ path('front_main_home') }}"> Our Journey                   
-                    </a>
-                </div>
-                
-                <div class="logo">
-                    <img src="{{ asset('picture/Logo2.png') }}" alt="Logo" width="65" height="60" class="d-inline-block align-text-top align-text-center">
-                </div>
-                
-                <div class="buttonMenu d-flex flex-row-reverse">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a 
-                                {% if route_name == "front_main_home" %}  class="nav-link active" 
-                                {% else %} 
-                                class="nav-link" 
-                                {% endif %} 
-                                href="{{ path('front_main_home') }}">Accueil
+            <div class="content-wrap">
+                <nav class="navbar navbar-custom navbar-expand-lg">
+                    <div class="container-fluid" id="navContainer">
+                        <div class="titleContent">
+                            <a class="navbar-brand" id="title" href="{{ path('front_main_home') }}"> Our Journey                   
                             </a>
+                        </div>
+                        
+                        <div class="logo">
+                            <img src="{{ asset('picture/Logo2.png') }}" alt="Logo" width="65" height="60" class="d-inline-block align-text-top align-text-center">
+                        </div>
+                        
+                        <div class="buttonMenu d-flex flex-row-reverse">
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="#navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a 
+                                        {% if route_name == "front_main_home" %}  class="nav-link active" 
+                                        {% else %} 
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="{{ path('front_main_home') }}">Accueil
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a 
+                                        {% if route_name == "front_profil_read" %}
+                                        class="nav-link active" 
+                                        {% else %}
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="path('front_profil_read')">Profil
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a 
+                                        {% if route_name == "front_travels_list" %}
+                                        class="nav-link active" 
+                                        {% else %}
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="path('front_travels_list')">Mes voyages
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a 
+                                        {% if route_name == "front_favorites_list" %}
+                                        class="nav-link active" 
+                                        {% else %}
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="path('front_favorites_list')">Mes favoris
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a 
+                                        {% if route_name == "front_tips_list" %}
+                                        class="nav-link active" 
+                                        {% else %}
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="path('front_tips_lists')">Mes astuces
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a 
+                                        {% if route_name == "front_connection" %}
+                                        class="nav-link active" 
+                                        {% else %}
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="path('front_connection')">Se connecter ou s'inscrire
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                {% block body %}
+                {% endblock %}
+
+            </div>
+
+            <footer class="container-fluid footer-custom">
+                <div class="footerContainer">
+                    <ul class="navbar-nav" id="footer">
+                        <li class="nav-item">
+                            <a class="nav-link" href="path('front_CGU_read')">CGU</a>
                         </li>
-
                         <li class="nav-item">
-                            <a 
-                                {% if route_name == "front_profil_read" %}
-                                class="nav-link active" 
-                                {% else %}
-                                class="nav-link" 
-                                {% endif %} 
-                                href="path('front_profil_read')">Profil
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a 
-                                {% if route_name == "front_travels_list" %}
-                                class="nav-link active" 
-                                {% else %}
-                                class="nav-link" 
-                                {% endif %} 
-                                href="path('front_travels_list')">Mes voyages
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a 
-                                {% if route_name == "front_favorites_list" %}
-                                class="nav-link active" 
-                                {% else %}
-                                class="nav-link" 
-                                {% endif %} 
-                                href="path('front_favorites_list')">Mes favoris
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a 
-                                {% if route_name == "front_tips_list" %}
-                                class="nav-link active" 
-                                {% else %}
-                                class="nav-link" 
-                                {% endif %} 
-                                href="path('front_tips_lists')">Mes astuces
-                            </a>
+                            <a class="nav-link" href="path('front_Contact')">Contact</a>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </nav>
 
-        {% block body %}{% endblock %}
+                <div class="signatureContainer">
+                <span class="signature">Our Journey by Laura Poitou </span>
+                </div>
+            </footer>
+
+        </div>
 
         {# Bootstrap bundle with popper #}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
