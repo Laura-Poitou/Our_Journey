@@ -32,11 +32,13 @@
 }
 
 #navbarNav,
-.nav-link {
+.nav-link, 
+.linkInP {
     color: #F6AB6C;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.linkInP:hover {
     color:#f58235;
     font-weight: bolder;
 }
@@ -133,6 +135,36 @@
     transition: opacity .3s;
 }
 
+.card-title {
+   color:#f58235;
+   font-size: 1.5rem;
+   font-weight: bold;
+   font-family: Georgia, 'Times New Roman', Times, serif;
+   font-style: italic;
+   margin-bottom: 1rem;
+}
+
+.card-text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.card-text strong {
+    font-weight: bold;
+    color: #4ac1c5;
+}
+
+.card-text em {
+    font-style: normal;
+    color: #DF5E88;
+    font-weight: bolder;
+}
+
+.linkInP {
+    font-weight: bolder;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
 
 /* ********************************************************************************* */
 
@@ -177,6 +209,13 @@
 
     #placeholderContent {
         font-size: 1rem;
+    }
+
+    #card-custom {
+        position: absolute;
+        top: 55%;
+        left: 25%;
+        width: 50%!important;
     }
 
 }
