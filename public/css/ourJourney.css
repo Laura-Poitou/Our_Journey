@@ -158,6 +158,25 @@
         order: 1;
     }
 
+    .slider-custom{
+        display: flex;
+        align-content: space-between;
+        position: absolute;
+        left: 25%;
+        width: 50%;
+        height: 38vh;
+    }
+    
+    .carousel-item-custom {
+        width: 100%;
+        height: 40vh;
+        object-fit: cover;
+        transition: opacity .3s;
+        opacity: 0.85;
+    }
 
+    #placeholderContent {
+        font-size: 1rem;
+    }
 
 }
