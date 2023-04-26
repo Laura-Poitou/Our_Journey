@@ -168,6 +168,74 @@
 
 /* ********************************************************************************* */
 
+/* ************ */
+/* Registration */
+/* ************ */
+
+#card-registration {
+    margin-top: 1rem;
+}
+
+#registration-form{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.btn-custom {
+    background-color: #DF5E88;
+    color: #fff;
+    margin-top: 1rem;
+}
+
+.form-control, 
+.input-group {
+    width: 90%;
+}
+
+
+.col-form-label {
+    color: #4ac1c5;
+    font-weight: bolder;
+}
+
+.col-sm-2 {
+    width: 40%;
+}
+
+
+/* ********************************************************************************* */
+
+/* ****** */
+/* Log in */
+/* ****** */
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0.2rem;
+}
+
+#label-login-form {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #4ac1c5;
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+}
+
+#password,
+#username {
+    width: 40%;
+}
+
+#btn-connection{
+    width: 40%;
+}
+
+
+/* ********************************************************************************* */
+
 /* ************* */
 /* Media Queries */
 /* ************* */
@@ -218,4 +286,11 @@
         width: 50%!important;
     }
 
+    #card-registration{
+        position: absolute;
+        left: 25%;
+        width: 50%!important;
+    }
+
 }
+

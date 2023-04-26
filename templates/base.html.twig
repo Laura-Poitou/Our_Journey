@@ -57,14 +57,25 @@
                                 </li>
 
                                 <li class="nav-item">
-                                    <a 
-                                        {% if route_name == "front_profil_read" %}
-                                        class="nav-link active" 
-                                        {% else %}
-                                        class="nav-link" 
-                                        {% endif %} 
-                                        href="path('front_profil_read')">Profil
-                                    </a>
+                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                        <a 
+                                            {% if route_name == "front_profil_read" %}
+                                            class="nav-link active" 
+                                            {% else %}
+                                            class="nav-link" 
+                                            {% endif %}
+                                            href="#">Profil
+                                        </a>
+                                    {% else %}
+                                        <a 
+                                            {% if route_name == "front_profil_read" %}
+                                            class="nav-link active" 
+                                            {% else %}
+                                            class="nav-link" 
+                                            {% endif %}
+                                            href="{{ path('front_user_login') }}">Se connecter
+                                        </a>
+                                    {% endif %}
                                 </li>
 
                                 <li class="nav-item">
@@ -74,7 +85,7 @@
                                         {% else %}
                                         class="nav-link" 
                                         {% endif %} 
-                                        href="path('front_travels_list')">Mes voyages
+                                        href="#">Mes voyages
                                     </a>
                                 </li>
 
@@ -85,7 +96,7 @@
                                         {% else %}
                                         class="nav-link" 
                                         {% endif %} 
-                                        href="path('front_favorites_list')">Mes favoris
+                                        href="#">Mes favoris
                                     </a>
                                 </li>
 
@@ -96,27 +107,42 @@
                                         {% else %}
                                         class="nav-link" 
                                         {% endif %} 
-                                        href="path('front_tips_lists')">Mes astuces
+                                        href="#">Mes astuces
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     <a 
-                                        {% if route_name == "front_connection" %}
+                                        {% if route_name == "front_main_registration" %}
                                         class="nav-link active" 
                                         {% else %}
                                         class="nav-link" 
                                         {% endif %} 
-                                        href="path('front_connection')">Se connecter ou s'inscrire
+                                        href="{{ path('app_logout') }}">Se déconnecter
                                     </a>
+                                {% else %}
+                                    <a 
+                                        {% if route_name == "front_main_registration" %}
+                                        class="nav-link active" 
+                                        {% else %}
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="{{ path('front_main_registration') }}">S'inscrire
+                                    </a>
+                                {% endif %}
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </nav>
 
+                <main>
+
                 {% block body %}
                 {% endblock %}
+
+                </main>
 
             </div>
 

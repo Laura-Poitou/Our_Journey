@@ -1,3 +1,12 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+# logout
+app_logout:
+    path: /logout
+    methods: GET
+
+# config/routes.yaml
+api_login_check:
+    path: /api/login_check
