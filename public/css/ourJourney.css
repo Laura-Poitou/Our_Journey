@@ -191,13 +191,17 @@
 
 .form-control, 
 .input-group {
-    width: 75%;
+    width: 90%;
 }
 
 
 .col-form-label {
     color: #4ac1c5;
     font-weight: bolder;
+}
+
+.col-sm-2 {
+    width: 40%;
 }
 
 
@@ -261,3 +265,4 @@
     }
 
 }
+
