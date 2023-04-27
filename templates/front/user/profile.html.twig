@@ -10,12 +10,14 @@
                 <div class="user-profile">
                     <div class="user-nickname">Psuedo : <em class="user-value">{{ user.nickname }}</em></div>
                     <div class="user-email"> Email : <em class="user-value">{{ user.email }}</em></div>
-                    <div class="user-birthday"> Anniversaire :  <em class="user-value">{{ user.birthday ? user.birthday|date('Y-m-d H:i:s') : '' }}</em></div>
+                    <div class="user-birthday"> Anniversaire :  <em class="user-value">{{ user.birthday ? user.birthday|date('d-m-Y') : '' }}</em></div>
                 </div>
 
                 <p class="instrucion-modify"> Vous pouvez modifier votre <strong>profil</strong> et votre <strong>mot de passe</strong> si vous le souhaitez.</p>
 
-                <button class="btn btn-custom" id="btn-modify" type="submit">Modifier</button>
+                <a href='{{ path('front_user_editProfile') }}'>
+                    <button class="btn btn-custom" id="btn-modify">Modifier</button>
+                </a>
                 
 
             </div>

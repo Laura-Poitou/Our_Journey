@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="registration-form">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="card-title">Modifier le profil</h1>
+
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'ma-classe'}}) }}
+                    {{ form_widget(form) }}
+                    <a href='{{ path('front_user_showProfile') }}'>
+                    <button class="btn btn-custom" id="btn-modify" type="submit">Enregistrer</button>
+                    </a>
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

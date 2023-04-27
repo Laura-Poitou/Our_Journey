@@ -2,10 +2,15 @@
 
 namespace App\Controller\Front;
 
+use App\Entity\User;
+use App\Form\UserType;
+use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
@@ -39,15 +44,48 @@ class UserController extends AbstractController
         if ($user === null) {
             throw $this->createNotFoundException("L'utilisateur que vous cherchez n'existe pas.");
         }
-        
 
         return $this->render('front/user/profile.html.twig', [
-
         'user' => $user,
         ]);
     }
 
     // To edit a user 
+    #[Route('/profile/edit', name: 'front_user_editProfile')]
+    public function editProfile(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        // get the user connected
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            //get the new password
+            $newPassword = $form->get('password')->getData();
+         
+            $hashedPassword = $passwordHasher->hashPassword(
+                // pass $user object permit to the hasher to know the encode mode configured in security.yaml 
+                $user,
+                $newPassword,
+            );
+
+            // replace clear password with hashed one 
+            $user->setPassword($hashedPassword);
+
+            // persist and flush data
+            $userRepository->add($user, true);
+
+            return $this->redirectToRoute('front_user_showProfile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('front/user/editProfile.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
 
     // To delete a user 
 }
