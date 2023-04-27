@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="registration-form">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="card-title">Profil</h1>
+
+                <div class="user-profile">
+                    <div class="user-nickname">Psuedo : <em class="user-value">{{ user.nickname }}</em></div>
+                    <div class="user-email"> Email : <em class="user-value">{{ user.email }}</em></div>
+                    <div class="user-birthday"> Anniversaire :  <em class="user-value">{{ user.birthday ? user.birthday|date('Y-m-d H:i:s') : '' }}</em></div>
+                </div>
+
+                <p class="instrucion-modify"> Vous pouvez modifier votre <strong>profil</strong> et votre <strong>mot de passe</strong> si vous le souhaitez.</p>
+
+                <button class="btn btn-custom" id="btn-modify" type="submit">Modifier</button>
+                
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
