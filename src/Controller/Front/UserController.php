@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Form\UserPasswordType;
 use App\Repository\UserRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -114,4 +115,23 @@ class UserController extends AbstractController
     }
 
     // To delete a user 
+    #[Route('/profile/delete', name: 'front_user_deleteProfile')]
+    public function deleteProfile(Request $request, UserRepository $userRepository): Response
+    {
+        // get the user connected
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        // protection against csrf attack
+        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+            // delete and flush
+            $userRepository->remove($user, true);
+        }
+
+        // before redirection -> have to invalidate session
+        $request->getSession()->invalidate();
+        $this->container->get('security.token_storage')->setToken(null);
+
+        return $this->redirectToRoute('front_main_registration', [], Response::HTTP_SEE_OTHER);
+    }
 }

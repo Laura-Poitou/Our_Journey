@@ -24,9 +24,19 @@
                     <button class="btn btn-custom" id="btn-modify">Modifier le mot de passe</button>
                 </a>
                 </div>
-
             </div>
         </div>
+
+        <div class="card w-100 mb-3" id="card-container-two">
+            <div class="card-body" id="card-body-container">
+                <p class="instrucion-delete"> Si malheureusement vous souhaitez nous quitter et supprimer votre profil alors, cliquez sur le bouton ci-dessous.</p>
+                <form method="post" action="{{ path('front_user_deleteProfile', {'id': user.id}) }}" onsubmit="return confirm('Etes-vous certain de vouloir supprimer votre profil ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <button class="btn btn custom" id="btn-delete">Supprimer</button>
+                </form>
+            </div>
+        </div>
+
     </section>
 
 {% endblock %}

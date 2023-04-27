@@ -259,7 +259,8 @@
     font-weight: normal;
 }
 
-.instrucion-modify{
+.instrucion-modify,
+.instruction-delete {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #000;
     margin: 0.5rem 0 0.5rem 0;;
@@ -279,6 +280,12 @@
 
 .btn-container a {
     width: 40%;
+    margin-bottom: 1rem;
+}
+
+#btn-delete {
+    width: 40%;
+    background-color: #a6d6d8;
 }
 
 /* ********************************************************************************* */
@@ -333,11 +340,17 @@
         width: 50%!important;
     }
 
-    #card-container{
+    #card-container {
         position: absolute;
         left: 25%;
         width: 50%!important;
     }
 
+    #card-container-two {
+        position: absolute;
+        top: 60%;
+        left: 25%;
+        width: 50%!important;
+    }
 }
 
