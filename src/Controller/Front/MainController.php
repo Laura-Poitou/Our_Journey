@@ -3,7 +3,7 @@
 namespace App\Controller\Front;
 
 use App\Entity\User;
-use App\Form\UserType;
+use App\Form\UserRegistrationType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +31,7 @@ class MainController extends AbstractController
         $user = new User();
 
         // create form
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(UserRegistrationType::class, $user);
 
         // request treatment by the form
         $form->handleRequest($request);
@@ -74,7 +74,7 @@ class MainController extends AbstractController
             $em->flush();
 
             // redirection
-            return $this->redirectToRoute('front_main_home');
+            return $this->redirectToRoute('front_user_login');
             }
 
         return $this->renderForm('front/main/registration.html.twig', [

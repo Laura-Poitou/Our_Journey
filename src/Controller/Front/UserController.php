@@ -4,6 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\UserPasswordType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -63,6 +64,31 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            // persist and flush data
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('front_user_showProfile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('front/user/editProfile.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
+    }
+
+    // To edit user password 
+    #[Route('/profile/edit/password', name: 'front_user_editPassword')]
+    public function editPassword(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        // get the user connected
+        /** @var \App\Entity\User $user */
+        $user = $this->getUser();
+
+        $form = $this->createForm(UserPasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
             //get the new password
             $newPassword = $form->get('password')->getData();
          
@@ -76,12 +102,12 @@ class UserController extends AbstractController
             $user->setPassword($hashedPassword);
 
             // persist and flush data
-            $userRepository->add($user, true);
+            $userRepository->save($user, true);
 
             return $this->redirectToRoute('front_user_showProfile', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('front/user/editProfile.html.twig', [
+        return $this->renderForm('front/user/editPassword.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);

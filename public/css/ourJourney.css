@@ -271,7 +271,13 @@
     font-weight: bolder;
 }
 
-#btn-modify{
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.btn-container a {
     width: 40%;
 }
 

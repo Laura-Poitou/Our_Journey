@@ -15,10 +15,15 @@
 
                 <p class="instrucion-modify"> Vous pouvez modifier votre <strong>profil</strong> et votre <strong>mot de passe</strong> si vous le souhaitez.</p>
 
+                <div class="btn-container">
                 <a href='{{ path('front_user_editProfile') }}'>
-                    <button class="btn btn-custom" id="btn-modify">Modifier</button>
+                    <button class="btn btn-custom" id="btn-modify">Modifier le profil</button>
                 </a>
-                
+
+                <a href='{{ path('front_user_editPassword') }}'>
+                    <button class="btn btn-custom" id="btn-modify">Modifier le mot de passe</button>
+                </a>
+                </div>
 
             </div>
         </div>
