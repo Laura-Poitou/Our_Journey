@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="registration-form">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="card-title">Profil</h1>
+
+                <div class="user-profile">
+                    <div class="user-nickname">Psuedo : <em class="user-value">{{ user.nickname }}</em></div>
+                    <div class="user-email"> Email : <em class="user-value">{{ user.email }}</em></div>
+                    <div class="user-birthday"> Anniversaire :  <em class="user-value">{{ user.birthday ? user.birthday|date('d-m-Y') : '' }}</em></div>
+                </div>
+
+                <p class="instrucion-modify"> Vous pouvez modifier votre <strong>profil</strong> et votre <strong>mot de passe</strong> si vous le souhaitez.</p>
+
+                <div class="btn-container">
+                <a href='{{ path('front_user_editProfile') }}'>
+                    <button class="btn btn-custom" id="btn-modify">Modifier le profil</button>
+                </a>
+
+                <a href='{{ path('front_user_editPassword') }}'>
+                    <button class="btn btn-custom" id="btn-modify">Modifier le mot de passe</button>
+                </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card w-100 mb-3" id="card-container-two">
+            <div class="card-body" id="card-body-container">
+                <p class="instrucion-delete"> Si malheureusement vous souhaitez nous quitter et supprimer votre profil alors, cliquez sur le bouton ci-dessous.</p>
+                <form method="post" action="{{ path('front_user_deleteProfile', {'id': user.id}) }}" onsubmit="return confirm('Etes-vous certain de vouloir supprimer votre profil ?');">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <button class="btn btn custom" id="btn-delete">Supprimer</button>
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}
