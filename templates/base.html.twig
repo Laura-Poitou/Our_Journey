@@ -80,12 +80,12 @@
 
                                 <li class="nav-item">
                                     <a 
-                                        {% if route_name == "front_travels_list" %}
+                                        {% if route_name == "front_travel_browse" %}
                                         class="nav-link active" 
                                         {% else %}
                                         class="nav-link" 
                                         {% endif %} 
-                                        href="#">Mes voyages
+                                        href="{{ path('front_travel_browse') }}">Mes voyages
                                     </a>
                                 </li>
 

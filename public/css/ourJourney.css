@@ -288,6 +288,35 @@
     background-color: #a6d6d8;
 }
 
+
+/* ********************************************************************************* */
+
+/* ****** */
+/* Travel */
+/* ****** */
+
+#travel-title {
+    color: #4ac1c5;
+}
+
+#travel-card {
+    margin-bottom: 0.5rem;
+}
+
+.title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#btn-add {
+    margin: 0;
+    background-color: #DF5E88;
+    padding: auto;
+    color: #fff;
+}
+
 /* ********************************************************************************* */
 
 /* ************* */
@@ -351,6 +380,11 @@
         top: 60%;
         left: 25%;
         width: 50%!important;
+    }
+
+    .footer-custom {
+        position: absolute;
+        bottom: -60%;
     }
 }
 

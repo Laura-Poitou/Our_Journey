@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="travels-list">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <div class="title-container">
+                    <h1 class="card-title">Mes voyages</h1>
+                    <a href="#" class="btn" id="btn-add">Ajouter un voyage</a>
+                </div>
+
+                {% for travel in travels %}
+                    <div class="card" id="travel-card" style="width: 18rem;">
+                        <img src="{{ asset(travel.picture) }}" class="card-img-top" alt="Photo du {{ travel.title }}">
+                        <div class="card-body">
+                            <h2 class="card-title" id="travel-title">{{ travel.title }}</h2>
+                            <p class="card-text">{{ travel.description }}</p>
+                            <a href="#" class="btn btn-custom">Ouvrir le carnet</a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

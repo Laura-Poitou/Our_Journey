@@ -39,28 +39,25 @@ class TravelRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Travel[] Returns an array of Travel objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+    * @return [] Returns an array of user travels
+    */
+    public function findAllByUser($user): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
 
-//    public function findOneBySomeField($value): ?Travel
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $sql = '
+        SELECT *
+        FROM `travel`
+        INNER JOIN `user_travel` ON `user_travel`.`travel_id` = `travel`.`id`
+        WHERE `user_id` = :userId
+        ORDER BY `travel`.`title` ASC';
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId()]);
+
+        return $resultSet->fetchAllAssociative();
+
+    }
+
 }
