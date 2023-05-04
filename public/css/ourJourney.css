@@ -143,7 +143,7 @@ main{
 
 .card-title {
    color:#f58235;
-   font-size: 1.5rem;
+   font-size: 1.7rem;
    font-weight: bold;
    font-family: Georgia, 'Times New Roman', Times, serif;
    font-style: italic;
@@ -303,10 +303,11 @@ main{
 
 #travel-title {
     color: #4ac1c5;
+    font-size: 1.5rem;
 }
 
 #travel-card {
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .title-container{
@@ -318,10 +319,18 @@ main{
 
 #btn-add {
     margin: 0;
-    background-color: #DF5E88;
-    padding: auto;
+    background-color: #e685a5;
     color: #fff;
 }
+
+.travel-article {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
 
 /* ********************************************************************************* */
 
@@ -382,6 +391,7 @@ main{
         width: 50%!important;
         margin-left: 25%;
     } 
-
+    
+    
 }
 
