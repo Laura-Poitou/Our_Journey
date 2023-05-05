@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="travel-add-form">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="card-title">Ajouter un voyage</h1>
+                
+                {# form options #}
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'ma-classe'}}) }}
+                
+                    {# show successively form fields #}
+                    {{ form_widget(form) }}
+
+                    <button class="btn btn-custom" type="submit">Ajouter</button>
+                    
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

@@ -3,11 +3,13 @@
 namespace App\Controller\Front;
 
 use App\Entity\Travel;
+use App\Form\TravelType;
 use App\Repository\TravelRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class TravelController extends AbstractController
 {
@@ -20,6 +22,31 @@ class TravelController extends AbstractController
 
         return $this->render('front/travel/browse.html.twig', [
             'travels' => $travelRepository->findAllByUser($user)
+        ]);
+    }
+
+    # To add a travel
+    #[Route('/travels/add', name: 'front_travel_add')]
+    public function add(TravelRepository $travelRepository, Request $request): Response
+    {
+        $travel = new Travel();
+        $form = $this->createForm(TravelType::class, $travel);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var \App\Entity\User $user */
+            $user = $this->getUser();
+
+            $travel->addUser($user);
+
+            $travelRepository->save($travel, true);
+
+            return $this->redirectToRoute('front_travel_browse',  [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('front/travel/add.html.twig', [
+            'form' => $form
         ]);
     }
 
