@@ -390,6 +390,11 @@ main{
     background-color: #fabf8e;
 }
 
+#overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* ********************************************************************************* */
 
