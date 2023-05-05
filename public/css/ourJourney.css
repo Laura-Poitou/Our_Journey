@@ -297,9 +297,9 @@ main{
 
 /* ********************************************************************************* */
 
-/* ****** */
-/* Travel */
-/* ****** */
+/* ******* */
+/* Travels */
+/* ******* */
 
 #travel-title {
     color: #4ac1c5;
@@ -330,6 +330,65 @@ main{
     align-items: center;
 }
 
+
+/* ********************************************************************************* */
+
+/* ****** */
+/* Travel */
+/* ****** */
+
+.travel_detail_container {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #DF5E88;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.4rem;
+}
+
+.travel-begin,
+.travel-end,
+.travel-traveler-number,
+.travel-description {
+    margin: 0.4rem 0 0.4rem 0;
+}
+
+.travel-value {
+    color: #000;
+    font-weight: normal;
+    font-style: normal;
+}
+
+#first-title {
+    text-align: center;
+}
+
+#sub-title {
+    font-size: 1.5rem;
+    font-style: normal;
+    color: #4ac1c5;
+}
+
+.sub-title-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+}
+
+.btn-container-edit-delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; 
+}
+
+#btn-delete-2 {
+    background-color: #a6d6d8;
+}
+
+#btn-modify-2 {
+    background-color: #fabf8e;
+}
 
 
 /* ********************************************************************************* */

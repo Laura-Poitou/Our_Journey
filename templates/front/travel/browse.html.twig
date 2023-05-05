@@ -24,7 +24,7 @@
                             <div class="card-body">
                                 <h2 class="card-title" id="travel-title">{{ travel.title }}</h2>
                                 <p class="card-text">{{ travel.description }}</p>
-                                <a href="#" class="btn btn-custom">Ouvrir le carnet</a>
+                                <a href="{{ path("front_travel_read",  {'travel_id': travel.id}) }}" class="btn btn-custom">Ouvrir le carnet</a>
                             </div>
                         </div>
 
