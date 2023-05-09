@@ -32,9 +32,6 @@ class TravelController extends AbstractController
     {
         $travel = new Travel();
 
-        $traveler = new Traveler();
-        $traveler->setName('voyageur1');
-
         $form = $this->createForm(TravelType::class, $travel);
         $form->handleRequest($request);
 

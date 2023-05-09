@@ -404,6 +404,17 @@ main{
     font-size: inherit;
 }
 
+.add_tag_list {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-decoration: none;
+    color: #DF5E88;        
+}
+
+::marker {
+    display: none;
+}
+    
+
 /* ********************************************************************************* */
 
 /* ************* */
@@ -463,7 +474,6 @@ main{
         width: 50%!important;
         margin-left: 25%;
     } 
-    
     
 }
 

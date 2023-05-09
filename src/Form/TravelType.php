@@ -48,19 +48,13 @@ class TravelType extends AbstractType
             ->add('travelerNumber', NumberType::class, [
                 'label' => 'Nombre de voyageurs', 
             ])
-            // ->add('travelers', EntityType::class, [
-            //     'label' => 'Voyageur(s)',
-            //     'class' => Traveler::class,
-            //     'choice_label' => 'name',
-            //     'multiple' => true,
-            //     'expanded' => true,
-            //     'mapped' => false,
-            // ])
             ->add('travelers', CollectionType::class, [
                 'entry_type' => TravelerType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
             ])
+
+            
 
            
             
