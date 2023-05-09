@@ -4,6 +4,9 @@ namespace App\Form;
 
 use App\Entity\Travel;
 use App\Entity\Traveler;
+use App\Form\TravelerType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -12,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class TravelType extends AbstractType
 {
@@ -52,6 +56,14 @@ class TravelType extends AbstractType
             //     'expanded' => true,
             //     'mapped' => false,
             // ])
+            ->add('travelers', CollectionType::class, [
+                'entry_type' => TravelerType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+            ])
+
+           
+            
         ;
     }
 

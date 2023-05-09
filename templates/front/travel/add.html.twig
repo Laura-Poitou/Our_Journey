@@ -9,9 +9,24 @@
                 
                 {# form options #}
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'ma-classe'}}) }}
-                
-                    {# show successively form fields #}
-                    {{ form_widget(form) }}
+
+                    {{ form_row(form.startDate) }}
+                    {{ form_row(form.endDate) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.picture) }}
+                    {{ form_row(form.travelerNumber) }}
+
+                    <h2 class="subForm-title"> Voyageur(s) </h2>
+                    <ul class="travelers"
+                    data-index="{{ form.travelers|length > 0 ? form.travelers|last.vars.name + 1 : 0 }}"
+                    data-prototype="{{ form_widget(form.travelers.vars.prototype)|e('html_attr') }}"
+                    >
+                        {% for traveler in form.travelers %}
+                            <li> {{ form_row(traveler.name) }} </li>
+                        {% endfor %}
+                    </ul>
+                    
 
                     <button class="btn btn-custom" type="submit">Ajouter</button>
                     

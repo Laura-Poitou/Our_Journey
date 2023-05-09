@@ -3,6 +3,7 @@
 namespace App\Controller\Front;
 
 use App\Entity\Travel;
+use App\Entity\Traveler;
 use App\Form\TravelType;
 use App\Repository\TravelRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +31,10 @@ class TravelController extends AbstractController
     public function add(TravelRepository $travelRepository, Request $request): Response
     {
         $travel = new Travel();
+
+        $traveler = new Traveler();
+        $traveler->setName('voyageur1');
+
         $form = $this->createForm(TravelType::class, $travel);
         $form->handleRequest($request);
 

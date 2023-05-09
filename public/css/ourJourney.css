@@ -396,6 +396,14 @@ main{
     text-overflow: ellipsis;
 }
 
+.subForm-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #4ac1c5;
+    font-weight: bolder;
+    margin-bottom: 0.5rem; 
+    font-size: inherit;
+}
+
 /* ********************************************************************************* */
 
 /* ************* */
