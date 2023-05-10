@@ -53,9 +53,15 @@
                 <p class="card-text"> 
                     Avec <strong>Our Journey</strong>, créez votre carnet de voyage en ligne et partagez le avec vos amis et votre famille. Vous pouvez y retrouver tous <em>vos voyages</em>, <em>vos itinéraires</em>, <em>vos visites</em> et <em> vos photos</em> souvenirs. Vous pouvez également écrire et partager vos annecdotes ainsi que vos astuces.
                 </p>
-                <p class="card-text">
-                     Envie de créer votre carnet de voyage ? Alors, <a class="linkInP" href="{{ path('front_main_registration') }}">inscrivez-vous</a> 
-                </p>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <p class="card-text">
+                        Envie de voir vos carnets de voyage ? Alors, <a class="linkInP" href="{{ path('front_travel_browse') }}">cliquez-ici</a> 
+                    </p>
+                {% else %}
+                    <p class="card-text">
+                        Envie de créer votre carnet de voyage ? Alors, <a class="linkInP" href="{{ path('front_main_registration') }}">inscrivez-vous</a> 
+                    </p>
+                {% endif %}
                 
             </div>
         </div>
