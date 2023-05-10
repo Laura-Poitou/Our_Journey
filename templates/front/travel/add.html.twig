@@ -18,7 +18,7 @@
                     {{ form_row(form.travelerNumber) }}
 
                     <h2 class="subForm-title">Voyageur(s)</h2>
-                    <p>Pour ajouter des voyageurs au voyage : <br> Cliquez sur Ajouter un voyageur si vous n'avez jamais voyagé avec, sinon, sélectionnez son nom dans votre liste. </p>
+                    <p>Pour ajouter des voyageurs au voyage : <br> Cliquez sur Ajouter un voyageur si vous n'avez jamais voyagé avec, sinon, sélectionnez son nom dans votre liste. <br></p>
                     
                     <h2 class="subForm-title"> Nouveau(x) voyageur(s) </h2>
                     <ul class="travelers"
@@ -28,11 +28,9 @@
                         {% for traveler in form.travelers %}
                             <li> {{ form_row(traveler.name) }} </li>
                         {% endfor %}
-                    </ul>
+                    </ul>                
 
-                                      
-
-                    <button class="btn btn-custom" type="submit">Ajouter</button>
+                    <button class="btn btn-custom" type="submit">Ajouter le voyage</button>
                     
                 {{ form_end(form) }}
 

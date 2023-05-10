@@ -46,12 +46,24 @@ class TravelController extends AbstractController
 
             // to have travelers
             $travelTravelers = $travel->getTravelers();
-
-            // add new traveler(s) to the connected user
-            foreach ($travelTravelers as $traveler) {
-                $user->addTraveler($traveler); 
-            }
             
+            // Associative table of user travelers
+            $userTravelersList = $userRepository->getUserTravellers($user);
+            
+            // Create table with user travelers name 
+            $userTravelersName = [];
+            foreach ($userTravelersList as $userTraveller) {
+                $userTravelersName[] = $userTraveller['name'];
+            }
+
+            // for each traveler of the travel
+            foreach ($travelTravelers as $traveler) {
+                // if the new traveler name is not in user traveler list add it 
+                if(!in_array($traveler->getName(), $userTravelersName)) {
+                    $user->addTraveler($traveler);
+                }
+            }
+                     
             //persist and flush
             $travelRepository->save($travel, true);
 

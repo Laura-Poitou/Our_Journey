@@ -54,6 +54,7 @@ class TravelType extends AbstractType
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'label' => false,
+                'required' => false,
             ])          
             
         ;
