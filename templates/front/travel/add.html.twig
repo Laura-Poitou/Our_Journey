@@ -17,7 +17,10 @@
                     {{ form_row(form.picture) }}
                     {{ form_row(form.travelerNumber) }}
 
-                    <h2 class="subForm-title"> Voyageur(s) </h2>
+                    <h2 class="subForm-title">Voyageur(s)</h2>
+                    <p>Pour ajouter des voyageurs au voyage : <br> Cliquez sur Ajouter un voyageur si vous n'avez jamais voyagé avec, sinon, sélectionnez son nom dans votre liste. </p>
+                    
+                    <h2 class="subForm-title"> Nouveau(x) voyageur(s) </h2>
                     <ul class="travelers"
                     data-index="{{ form.travelers|length > 0 ? form.travelers|last.vars.name + 1 : 0 }}"
                     data-prototype="{{ form_widget(form.travelers.vars.prototype)|e('html_attr') }}"
@@ -26,7 +29,8 @@
                             <li> {{ form_row(traveler.name) }} </li>
                         {% endfor %}
                     </ul>
-                    
+
+                                      
 
                     <button class="btn btn-custom" type="submit">Ajouter</button>
                     

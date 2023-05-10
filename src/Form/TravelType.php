@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Travel;
 use App\Entity\Traveler;
 use App\Form\TravelerType;
+use App\Form\UserTravelersType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;
@@ -52,11 +53,8 @@ class TravelType extends AbstractType
                 'entry_type' => TravelerType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
-            ])
-
-            
-
-           
+                'label' => false,
+            ])          
             
         ;
     }

@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\Travel;
 use App\Entity\Traveler;
 use App\Form\TravelType;
+use App\Repository\UserRepository;
 use App\Repository\TravelRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ class TravelController extends AbstractController
 
     # To add a travel
     #[Route('/travels/add', name: 'front_travel_add')]
-    public function add(TravelRepository $travelRepository, Request $request): Response
+    public function add(TravelRepository $travelRepository, Request $request, UserRepository $userRepository): Response
     {
         $travel = new Travel();
 
@@ -40,9 +41,22 @@ class TravelController extends AbstractController
             /** @var \App\Entity\User $user */
             $user = $this->getUser();
 
+            // add new travel to the connected user
             $travel->addUser($user);
 
+            // to have travelers
+            $travelTravelers = $travel->getTravelers();
+
+            // add new traveler(s) to the connected user
+            foreach ($travelTravelers as $traveler) {
+                $user->addTraveler($traveler); 
+            }
+            
+            //persist and flush
             $travelRepository->save($travel, true);
+
+            // persist and flush
+            $userRepository->save($user, true);
 
             return $this->redirectToRoute('front_travel_browse',  [], Response::HTTP_SEE_OTHER);
         }
