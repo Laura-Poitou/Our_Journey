@@ -57,10 +57,10 @@ class TravelType extends AbstractType
                 'label' => false,
                 'required' => false,
             ]) 
-            ->add('userTravelers', UserTravelersType::class, [
-                'mapped' => false,
-                'label' => false,
-            ])         
+            // ->add('userTravelers', UserTravelersType::class, [
+            //     'mapped' => false,
+            //     'label' => false,
+            // ])         
             
         ;
     }

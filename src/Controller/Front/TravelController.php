@@ -81,14 +81,14 @@ class TravelController extends AbstractController
     # To show all articles related to a user travel
     #[Route('/travels/{travel_id}', name: 'front_travel_read')]
     #[ParamConverter('travel', options: ['mapping' => ['travel_id' => 'id']])]
-    public function read(TravelRepository $travelRepository, Travel $travel): Response
+    public function read(TravelRepository $travelRepository, Travel $travel, UserRepository $userRepository): Response
     {
         /** @var \App\Entity\User $user */
         $user = $this->getUser();
 
         return $this->render('front/travel/read.html.twig', [
             'articles' => $travelRepository->findTravelAndArticles($user, $travel),
-            'travel' => $travel
+            'travel' => $travel,
         ]);
     }
 

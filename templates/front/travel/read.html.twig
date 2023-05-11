@@ -13,7 +13,11 @@
                     <div class="travel-traveler-number"> Nombre de voyageurs : <em class="travel-value">{{ travel.travelerNumber }}</em></div>
                     
 
-                    {# <div class="travel-travelers"> Voyageurs : <em class="travel-value">{{ user.email }}</em></div> #}
+                    <div class="travel-travelers"> Voyageurs : 
+                    {% for travelTraveler in travel.travelers %}
+                    <em class="travel-value">{{ travelTraveler.name }}</em>
+                    {% endfor %}
+                    </div>
 
                     <div class="travel-description"> Description :  <em class="travel-value">{{ travel.description }}</em></div>
 
