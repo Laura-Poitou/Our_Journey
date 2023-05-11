@@ -48,7 +48,7 @@ class TravelController extends AbstractController
             $travelTravelers = $travel->getTravelers();
             
             // Associative table of user travelers
-            $userTravelersList = $userRepository->getUserTravellers($user);
+            $userTravelersList = $userRepository->getUserTravelers($user);
             
             // Create table with user travelers name 
             $userTravelersName = [];

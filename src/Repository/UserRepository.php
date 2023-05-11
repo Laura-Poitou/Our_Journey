@@ -61,7 +61,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     /**
      * Get user travelers list
      */
-    public function getUserTravellers($user): array
+    public function getUserTravelers($user): array
     {
         $conn = $this->getEntityManager()->getConnection();
 

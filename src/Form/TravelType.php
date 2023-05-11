@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
+
 class TravelType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -55,7 +56,11 @@ class TravelType extends AbstractType
                 'allow_add' => true,
                 'label' => false,
                 'required' => false,
-            ])          
+            ]) 
+            ->add('userTravelers', UserTravelersType::class, [
+                'mapped' => false,
+                'label' => false,
+            ])         
             
         ;
     }

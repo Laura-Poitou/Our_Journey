@@ -28,7 +28,9 @@
                         {% for traveler in form.travelers %}
                             <li> {{ form_row(traveler.name) }} </li>
                         {% endfor %}
-                    </ul>                
+                    </ul>
+
+                    {{ form_row(form.userTravelers) }}              
 
                     <button class="btn btn-custom" type="submit">Ajouter le voyage</button>
                     
