@@ -15,10 +15,6 @@ var Stadia_OSMBright = L.tileLayer('https://tiles.stadiamaps.com/tiles/osm_brigh
 // to add images to map
 Stadia_OSMBright.addTo(map);
 
-// add markers
-var markerTokyo = L.marker([35.681521, 139.756878]).addTo(map);
-var markerNikko = L.marker([36.90125396268982, 139.63572877491868]).addTo(map);
-
-// pop up
-markerTokyo.bindPopup("<p>Tokyo</p>").openPopup();
-markerNikko.bindPopup("<p>Nikko</p>").openPopup();
+// add markers and popup (accessility version)
+var markerTokyo = L.marker([35.681521, 139.756878], {alt: 'Tokyo'}).addTo(map).bindPopup('Tokyo');
+var markerNikko = L.marker([36.90125396268982, 139.63572877491868], {alt: 'Nikko'}).addTo(map).bindPopup("<p>Nikko</p>");
