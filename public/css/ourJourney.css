@@ -410,8 +410,9 @@ main{
     color: #DF5E88;        
 }
 
-::marker {
-    display: none;
+.travel-travelers {
+    display: flex;
+    flex-direction: column;
 }
     
 

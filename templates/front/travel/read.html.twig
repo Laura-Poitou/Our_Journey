@@ -14,9 +14,11 @@
                     
 
                     <div class="travel-travelers"> Voyageurs : 
-                    {% for travelTraveler in travel.travelers %}
-                    <em class="travel-value">{{ travelTraveler.name }}</em>
-                    {% endfor %}
+                        <ul>
+                            {% for travelTraveler in travel.travelers %}
+                            <li> <em class="travel-value">{{ travelTraveler.name }}</em> </li>
+                            {% endfor %}
+                        </ul>
                     </div>
 
                     <div class="travel-description"> Description :  <em class="travel-value">{{ travel.description }}</em></div>
