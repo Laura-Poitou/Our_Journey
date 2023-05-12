@@ -23,6 +23,11 @@
 
                     <div class="travel-description"> Description :  <em class="travel-value">{{ travel.description }}</em></div>
 
+                    {# to pass associative array with destinations to js file named map.js #}
+                    <div id="js-destinations" data-destinations="{{ destinations|json_encode|e('html_attr') }}">
+                        <!-- ... -->
+                    </div>
+
                     <div id="map"></div>
 
                     <div class="btn-container-edit-delete">

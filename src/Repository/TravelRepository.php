@@ -81,5 +81,28 @@ class TravelRepository extends ServiceEntityRepository
 
     }
 
+    /**
+    * @return [] Returns an array of all destinations related to a user travel
+    */
+    public function findTravelDestinations($user, $travel): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $sql = "
+        SELECT `destination`.*, `travel`.`id` AS 'travel_id'
+        FROM `travel`
+        INNER JOIN `user_travel` ON `user_travel`.`travel_id` = `travel`.`id`
+        INNER JOIN `travel_destination` ON `travel`.`id` = `travel_destination`.`travel_id`
+        INNER JOIN `destination` ON `destination`.`id` = `travel_destination`.`destination_id`
+        WHERE `user_id` = :userId AND `travel`.`id` = :travelId";
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId(), 'travelId' => $travel->getId()]);
+
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+
 
 }
