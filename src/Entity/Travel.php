@@ -56,6 +56,8 @@ class Travel
     private Collection $articles;
 
     #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'travel')]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private Collection $destinations;
 
     #[ORM\ManyToMany(targetEntity: Traveler::class, inversedBy: 'travel', cascade: ["persist"])]
