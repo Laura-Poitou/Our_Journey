@@ -17,8 +17,7 @@ class restCountriesAPI
     }
 
     /**
-     * Fetch all country information
-     * @param string $name Country name
+     * Fetch country information
      * @return array Country data
      */
     public function fetch(string $name)
@@ -29,24 +28,46 @@ class restCountriesAPI
             'GET',
             // API endpoint
             "https://restcountries.com/v3.1/name/". $name,
-            // options
-            // [
-            //     // GET parameters (query string)
-            //     'query' => [
-            //         'name' => $name, // n = the country name
-            //     ]
-            // ]
+            
         );
 
+        //get status code
         $statusCode = $response->getStatusCode();
-        // $statusCode = 200
+        // get header
         $contentType = $response->getHeaders()['content-type'][0];
-        // $contentType = 'application/json'
+        // get content
         $content = $response->getContent();
-        // $content = '{"id":521583, "name":"symfony-docs", ...}'
+        // transform to array
         $content = $response->toArray();
-        // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
+        
+        return $content;
 
+    }
+
+    /**
+     * Fetch all countries name
+     * @return array Country data
+     */
+    public function fetchAll()
+    {
+        // call Rest Countries API for this country name
+        $response = $this->client->request(
+            // HTTP method
+            'GET',
+            // API endpoint
+            "https://restcountries.com/v3.1/all?fields=name,translations",
+            
+        );
+
+        //get status code
+        $statusCode = $response->getStatusCode();
+        // get header
+        $contentType = $response->getHeaders()['content-type'][0];
+        // get content
+        $content = $response->getContent();
+        // transform to array
+        $content = $response->toArray();
+        
         return $content;
 
     }

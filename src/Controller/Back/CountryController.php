@@ -15,6 +15,19 @@ class CountryController extends AbstractController
         $this->restCountriesAPI = $restCountriesAPI;
     }
 
+    #[Route('/back/countries', name: 'back_country_browse')]
+    public function browse(): JsonResponse
+    {
+        $countriesInfo = $this->restCountriesAPI->fetchAll();
+
+        $test = "ma variable transmise";
+
+       return $this->render('front/travel/add.html.twig', [
+        'test' => $test
+       ]);
+
+    }
+
 
     #[Route('/back/country', name: 'back_country_show')]
     public function show(): JsonResponse
