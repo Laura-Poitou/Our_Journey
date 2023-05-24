@@ -82,6 +82,27 @@ class TravelRepository extends ServiceEntityRepository
     }
 
     /**
+    * @return [] Returns an article related to a user travel
+    */
+    public function findTravelArticle($user, $travel, $article): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $sql = "
+        SELECT `article`.*
+        FROM `travel`
+        INNER JOIN `user_travel` ON `user_travel`.`travel_id` = `travel`.`id`
+        INNER JOIN `article` ON `travel`.`id` = `article`.`travel_id`
+        WHERE `user_id` = :userId AND `travel`.`id` = :travelId AND `article`.`id` = :articleId";
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId(), 'travelId' => $travel->getId(), 'articleId' => $article->getId()]);
+
+        return $resultSet->fetch();
+
+    }
+
+    /**
     * @return [] Returns an array of all destinations related to a user travel
     */
     public function findTravelDestinations($user, $travel): array
