@@ -30,4 +30,8 @@ const addFormToCollection = (e) => {
       collectionHolder.dataset.index++;
 }
 
+addTagLink.addEventListener('click', (event) => {
+  event.preventDefault();
+});
+
 addTagLink.addEventListener("click", addFormToCollection)

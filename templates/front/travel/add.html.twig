@@ -30,9 +30,19 @@
                         {% endfor %}
                     </ul>
 
+                    <h2 class="subForm-title"> Destinations </h2>
+                    <ul class="destinations"
+                    data-index="{{ form.destinations|length > 0 ? form.destinations|last.vars.name + 1 : 0 }}"
+                    data-prototype="{{ form_widget(form.destinations.vars.prototype)|e('html_attr') }}"
+                    >
+                        {% for destination in form.destinations %}
+                            <li> {{ form_row(destination.name) }} </li>
+                        {% endfor %}
+                    </ul>
+
                     {# {{ form_row(form.userTravelers) }}               #}
 
-                    {% include "back/countries.html.twig" %}
+                    {# {% include "back/countries.html.twig" %} #}
 
                     <button class="btn btn-custom" type="submit">Ajouter le voyage</button>
                     

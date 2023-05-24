@@ -64,6 +64,9 @@ class TravelController extends AbstractController
                     $user->addTraveler($traveler);
                 }
             }
+
+            // to have destination
+            $travelDestinations = $travel->getDestinations();
                      
             //persist and flush
             $travelRepository->save($travel, true);

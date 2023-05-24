@@ -6,6 +6,7 @@ use App\Entity\Travel;
 use App\Entity\Traveler;
 use App\Form\TravelerType;
 use App\Entity\Destination;
+use App\Form\DestinationType;
 use App\Form\UserTravelersType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -58,6 +59,13 @@ class TravelType extends AbstractType
                 'label' => false,
                 'required' => false,
             ]) 
+            ->add('destinations', CollectionType::class, [
+                'entry_type' => DestinationType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'label' => false,
+                'required' => false,
+            ])
             // ->add('userTravelers', UserTravelersType::class, [
             //     'mapped' => false,
             //     'label' => false,
