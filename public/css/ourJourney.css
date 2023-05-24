@@ -390,6 +390,12 @@ main{
     background-color: #fabf8e;
 }
 
+#btn-delete-2:hover,
+#btn-modify-2:hover {
+    background-color: #fff;
+    color: #000;
+} 
+
 #overflow {
     white-space: nowrap;
     overflow: hidden;

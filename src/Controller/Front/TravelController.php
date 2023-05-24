@@ -65,8 +65,9 @@ class TravelController extends AbstractController
                 }
             }
 
-            // to have destination
+            // to have destinations
             $travelDestinations = $travel->getDestinations();
+            
                      
             //persist and flush
             $travelRepository->save($travel, true);
@@ -96,6 +97,20 @@ class TravelController extends AbstractController
             'travel' => $travel,
             'destinations' => $travelRepository->findTravelDestinations($user, $travel)
         ]);
+    }
+
+    // To delete a travel 
+    #[Route('/travel/delete/{travel_id}', name: 'front_travel_delete')]
+    #[ParamConverter('travel', options: ['mapping' => ['travel_id' => 'id']])]
+    public function delete(Request $request, TravelRepository $travelRepository, Travel $travel): Response
+    {
+        // protection against csrf attack
+        if ($this->isCsrfTokenValid('delete'.$travel->getId(), $request->request->get('_token'))) {
+            // delete and flush
+            $travelRepository->remove($travel, true);
+        }
+
+        return $this->redirectToRoute('front_travel_browse', [], Response::HTTP_SEE_OTHER);
     }
 
 }

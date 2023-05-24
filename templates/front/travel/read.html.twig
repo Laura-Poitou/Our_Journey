@@ -35,9 +35,12 @@
                             <button class="btn btn-custom" id="btn-modify-2">Modifier</button>
                         </a>
 
-                        <a href='#'>
+                        
+                        <form method="post" action="{{ path('front_travel_delete', {'travel_id': travel.id}) }}" onsubmit="return confirm('Etes-vous certain de vouloir supprimer ce voyage ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ travel.id) }}">
                             <button class="btn btn-custom" id="btn-delete-2">Supprimer</button>
-                        </a>
+                        </form>
+
                     </div>
 
                 </div>

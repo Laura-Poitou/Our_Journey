@@ -20,7 +20,6 @@
                     <h2 class="subForm-title">Voyageur(s)</h2>
                     <p>Pour ajouter des voyageurs au voyage : <br> Cliquez sur Ajouter un voyageur, indiquez son prénom puis recommencez autant de fois qu'il le faut. <br></p>
                     
-                    <h2 class="subForm-title"> Nouveau(x) voyageur(s) </h2>
                     <ul class="travelers"
                     data-index="{{ form.travelers|length > 0 ? form.travelers|last.vars.name + 1 : 0 }}"
                     data-prototype="{{ form_widget(form.travelers.vars.prototype)|e('html_attr') }}"
@@ -31,6 +30,7 @@
                     </ul>
 
                     <h2 class="subForm-title"> Destinations </h2>
+                    <p>Pour ajouter des destinations (pays ou villes) au voyage : <br> Cliquez sur Ajouter une destination, indiquez son nom puis recommencez autant de fois qu'il le faut. <br></p>
                     <ul class="destinations"
                     data-index="{{ form.destinations|length > 0 ? form.destinations|last.vars.name + 1 : 0 }}"
                     data-prototype="{{ form_widget(form.destinations.vars.prototype)|e('html_attr') }}"
