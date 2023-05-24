@@ -58,8 +58,6 @@ class restCountriesAPI
             // API endpoint
             "https://restcountries.com/v3.1/all?fields=name,translations,flags,latlng");
 
-        $statusCode = $response->getStatusCode();
-        // $contentType = $response->getHeaders()['content-type'][0];
         $content = $response->toArray();
         
         return $content;

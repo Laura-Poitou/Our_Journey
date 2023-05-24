@@ -10,18 +10,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CountryController extends AbstractController
 {
-    private $restCountriesAPI;
-
-    public function __construct(restCountriesAPI $restCountriesAPI) {
-        $this->restCountriesAPI = $restCountriesAPI;
-    }
-
+    
     #[Route('/back/countries', name: 'back_country_browse')]
-    public function browse(): JsonResponse
+    public function browse(restCountriesAPI $restCountriesAPI): Response
     {
-        $countriesInfo = new JsonResponse( $this->restCountriesAPI->fetchAll());
 
-        return $countriesInfo;
+        //dd($restCountriesAPI->fetchAll());
+
+        return $this->render('back/countries.html.twig', [
+            'data' => $restCountriesAPI->fetchAll(),
+        ]);
 
     }
 }
