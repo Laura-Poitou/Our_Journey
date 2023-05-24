@@ -3,8 +3,6 @@
 namespace App\Service;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Connector to OMDB API
@@ -12,14 +10,10 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 class restCountriesAPI
 { 
     private $client;
-    private $jwtManager;
-    private $tokenStorageInterface;
 
-    public function __construct(HttpClientInterface $client, TokenStorageInterface $tokenStorageInterface, JWTTokenManagerInterface $jwtManager)
+    public function __construct(HttpClientInterface $client)
     {
         $this->client = $client;
-        $this->jwtManager = $jwtManager;
-        $this->tokenStorageInterface = $tokenStorageInterface;
     }
 
 
@@ -34,11 +28,7 @@ class restCountriesAPI
             // HTTP method
             'GET',
             // API endpoint
-            "https://restcountries.com/v3.1/name/". $name, [
-                'query' => [
-                    'token' => $this->jwtManager->decode($this->tokenStorageInterface->getToken())
-                ]
-            ]
+            "https://restcountries.com/v3.1/name/". $name
             
         );
 
@@ -66,11 +56,7 @@ class restCountriesAPI
             // HTTP method
             'GET',
             // API endpoint
-            "https://restcountries.com/v3.1/all?fields=name,translations,flags,latlng", [
-                'query' => [
-                    'token' => $this->jwtManager->decode($this->tokenStorageInterface->getToken())
-                ]
-            ]);
+            "https://restcountries.com/v3.1/all?fields=name,translations,flags,latlng");
 
         $statusCode = $response->getStatusCode();
         // $contentType = $response->getHeaders()['content-type'][0];

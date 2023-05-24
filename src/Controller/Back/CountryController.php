@@ -16,7 +16,7 @@ class CountryController extends AbstractController
         $this->restCountriesAPI = $restCountriesAPI;
     }
 
-    #[Route('/api/countries', name: 'back_country_browse')]
+    #[Route('/back/countries', name: 'back_country_browse')]
     public function browse(): JsonResponse
     {
         $countriesInfo = new JsonResponse( $this->restCountriesAPI->fetchAll());
