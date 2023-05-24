@@ -5,6 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\Travel;
 use App\Entity\Traveler;
 use App\Form\TravelType;
+use App\Service\restCountriesAPI;
 use App\Repository\UserRepository;
 use App\Repository\TravelRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,7 +30,7 @@ class TravelController extends AbstractController
 
     # To add a travel
     #[Route('/travels/add', name: 'front_travel_add')]
-    public function add(TravelRepository $travelRepository, Request $request, UserRepository $userRepository): Response
+    public function add(TravelRepository $travelRepository, Request $request, UserRepository $userRepository, restCountriesAPI $restCountriesAPI): Response
     {
         $travel = new Travel();
 
@@ -74,7 +75,8 @@ class TravelController extends AbstractController
         }
 
         return $this->renderForm('front/travel/add.html.twig', [
-            'form' => $form
+            'form' => $form,
+            'data' => $restCountriesAPI->fetchAll(),
         ]);
     }
 

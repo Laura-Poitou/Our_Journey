@@ -1,18 +1,14 @@
-{% extends 'base.html.twig' %}
 
 {% block body %}
 
-    <section class="registration-form">
-        <div class="card w-100 mb-3" id="card-container">
-            <div class="card-body" id="card-body-container">
-                <h1 class="card-title">Test</h1>
-                
+    <div class="county-container">
+        <h2 class="subForm-title"> Pays </h2>
+        
+        <select name="country" id="country-name" multiple>
                 {% for country in data %}
-                        <div>{{country.name.common}}</div>
-                {% endfor %}
-
-            </div>
-        </div>
-    </section>
-
+                    <option value="{{country.translations.fra.common}}">{{country.translations.fra.common}}</option>
+                {% endfor %} 
+        </select> 
+    <div>   
+    
 {% endblock %}
