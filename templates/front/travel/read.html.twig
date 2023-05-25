@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="travels-list">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <div class="travel_detail_container">
+                    <h1 class="card-title" id="first-title">{{travel.title}}</h1>
+            
+                    <div class="travel-begin">Départ : <em class="travel-value">{{ travel.startDate ? travel.startDate|date('d-m-Y') : '' }}</em></div>
+                    <div class="travel-end"> Retour : <em class="travel-value">{{ travel.endDate ? travel.endDate|date('d-m-Y') : '' }}</em></div>
+                    <div class="travel-traveler-number"> Nombre de voyageurs : <em class="travel-value">{{ travel.travelerNumber }}</em></div>
+                    
+
+                    <div class="travel-travelers"> Voyageurs : 
+                        <ul>
+                            {% for travelTraveler in travel.travelers %}
+                            <li> <em class="travel-value">{{ travelTraveler.name }}</em> </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="travel-description"> Description :  <em class="travel-value">{{ travel.description }}</em></div>
+
+                    {# to retrieve associative array with destinations in JSON format to JS file named map.js #}
+                    <div id="js-destinations" data-destinations="{{ destinations|json_encode|e('html_attr') }}">
+                        <!-- ... -->
+                    </div>
+
+                    <div id="map"></div>
+
+                    <div class="btn-container-edit-delete">
+                        <a href='{{ path('front_travel_edit', {'travel': travel.id}) }}'>
+                            <button class="btn btn-custom" id="btn-modify-2">Modifier</button>
+                        </a>
+
+                        
+                        <form method="post" action="{{ path('front_travel_delete', {'travel_id': travel.id}) }}" onsubmit="return confirm('Etes-vous certain de vouloir supprimer ce voyage ?');">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ travel.id) }}">
+                            <button class="btn btn-custom" id="btn-delete-2">Supprimer</button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+                <article class="travel-article">
+                    
+                    <div class="sub-title-container">
+                        <h2 class="card-title" id="sub-title"> Visites </h2>
+                        <a href="{{ path('front_article_add', {'id': travel.id}) }}">
+                            <button class="btn btn-custom" id="btn-add">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                                </svg>
+                            Ajouter</button>
+                        </a>
+                    </div>
+
+                    {% for article in articles %}
+
+                        <div class="card" id="travel-card" style="width: 18rem;">
+                            <img src="{{ asset(article.picture) }}" class="card-img-top" alt="Photo {{ article.title }}">
+                            <div class="card-body">
+                                <h2 class="card-title" id="travel-title">{{ article.title }}</h2>
+                                <p class="card-text" id="overflow">{{ article.content}}</p>
+                                <a href="{{ path('front_travel_readArticle', {'id': article.id, 'travel_id': travel.id} ) }}" class="btn btn-custom">Lire</a>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </article>
+                    
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

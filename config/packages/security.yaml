@@ -24,6 +24,7 @@ security:
             stateless: true
             jwt: ~
             
+            
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
@@ -47,6 +48,7 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/travels,       roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:

@@ -21,6 +21,12 @@ class Destination
     #[ORM\ManyToMany(targetEntity: Travel::class, mappedBy: 'destinations')]
     private Collection $travel;
 
+    #[ORM\Column(nullable: true)]
+    private ?float $longitude = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $latitude = null;
+
     public function __construct()
     {
         $this->travel = new ArrayCollection();
@@ -66,6 +72,30 @@ class Destination
         if ($this->travel->removeElement($travel)) {
             $travel->removeDestination($this);
         }
+
+        return $this;
+    }
+
+    public function getLongitude(): ?float
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(?float $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getLatitude(): ?float
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(?float $latitude): self
+    {
+        $this->latitude = $latitude;
 
         return $this;
     }

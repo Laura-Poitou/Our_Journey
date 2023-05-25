@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="travels-list">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <div class="title-container">
+                    <h1 class="card-title">Mes voyages</h1>
+                    <a href="{{ path('front_travel_add') }}">
+                        <button class="btn btn-custom" id="btn-add">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                            </svg>
+                        Ajouter</button>
+                    </a>
+                </div>
+
+                <article class="travel-article">
+                    {% for travel in travels %}
+                    
+                        <div class="card" id="travel-card" style="width: 18rem;">
+                            <img src="{{ asset(travel.picture) }}" class="card-img-top" alt="Photo du {{ travel.title }}">
+                            <div class="card-body">
+                                <h2 class="card-title" id="travel-title">{{ travel.title }}</h2>
+                                <p class="card-text">{{ travel.description }}</p>
+                                <a href="{{ path("front_travel_read",  {'travel_id': travel.id}) }}" class="btn btn-custom">Ouvrir le carnet</a>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </article>
+
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

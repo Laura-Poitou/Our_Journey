@@ -22,3 +22,12 @@
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+
+### image
+/public/privatePicture/
+
+### request
+/requests.md
+
+### test
+/test.md

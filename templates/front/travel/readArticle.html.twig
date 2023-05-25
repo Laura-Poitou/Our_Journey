@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="article">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <div class="article_detail_container">
+
+                    <img src="{{ asset(article.picture) }}" class="card-img-top" alt="Photo {{ article.title }}">
+                    <div class="card-body">
+                        <h2 class="card-title" id="article-title">{{ article.title }}</h2>
+                        <p class="card-text">{{ article.content}}</p>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+{% endblock %}

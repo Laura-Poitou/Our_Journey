@@ -39,28 +39,91 @@ class TravelRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Travel[] Returns an array of Travel objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+    * @return [] Returns an array of user travels
+    */
+    public function findAllByUser($user): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
 
-//    public function findOneBySomeField($value): ?Travel
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $sql = '
+        SELECT *
+        FROM `travel`
+        INNER JOIN `user_travel` ON `user_travel`.`travel_id` = `travel`.`id`
+        WHERE `user_id` = :userId
+        ORDER BY `travel`.`title` ASC';
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId()]);
+
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+    /**
+    * @return [] Returns an array of all articles related to a user travel
+    */
+    public function findTravelAndArticles($user, $travel): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $sql = "
+        SELECT `article`.*
+        FROM `travel`
+        INNER JOIN `user_travel` ON `user_travel`.`travel_id` = `travel`.`id`
+        INNER JOIN `article` ON `travel`.`id` = `article`.`travel_id`
+        WHERE `user_id` = :userId AND `travel`.`id` = :travelId";
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId(), 'travelId' => $travel->getId()]);
+
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+    /**
+    * @return [] Returns an article related to a user travel
+    */
+    public function findTravelArticle($user, $travel, $article): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $sql = "
+        SELECT `article`.*
+        FROM `travel`
+        INNER JOIN `user_travel` ON `user_travel`.`travel_id` = `travel`.`id`
+        INNER JOIN `article` ON `travel`.`id` = `article`.`travel_id`
+        WHERE `user_id` = :userId AND `travel`.`id` = :travelId AND `article`.`id` = :articleId";
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId(), 'travelId' => $travel->getId(), 'articleId' => $article->getId()]);
+
+        return $resultSet->fetch();
+
+    }
+
+    /**
+    * @return [] Returns an array of all destinations related to a user travel
+    */
+    public function findTravelDestinations($user, $travel): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $sql = "
+        SELECT `destination`.*, `travel`.`id` AS 'travel_id'
+        FROM `travel`
+        INNER JOIN `user_travel` ON `user_travel`.`travel_id` = `travel`.`id`
+        INNER JOIN `travel_destination` ON `travel`.`id` = `travel_destination`.`travel_id`
+        INNER JOIN `destination` ON `destination`.`id` = `travel_destination`.`destination_id`
+        WHERE `user_id` = :userId AND `travel`.`id` = :travelId";
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId(), 'travelId' => $travel->getId()]);
+
+        return $resultSet->fetchAllAssociative();
+
+    }
+
+
+
 }

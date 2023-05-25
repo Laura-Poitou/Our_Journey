@@ -1,0 +1,14 @@
+
+{% block body %}
+
+    <div class="county-container">
+        <h2 class="subForm-title"> Pays </h2>
+        
+        <select name="country" id="country-name" multiple>
+                {% for country in data %}
+                    <option value="{{country.translations.fra.common}}">{{country.translations.fra.common}}</option>
+                {% endfor %} 
+        </select> 
+    <div>   
+    
+{% endblock %}

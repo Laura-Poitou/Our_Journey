@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use Doctrine\DBAL\Connection;
+use Doctrine\ORM\Query\ResultSetMapping;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -55,6 +57,29 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
 
         $this->save($user, true);
     }
+
+    /**
+     * Get user travelers list
+     */
+    public function getUserTravelers($user): array
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 
+            'SELECT `user_traveler`.*, `traveler`.`name`
+            FROM `user_traveler`
+            INNER JOIN `traveler` ON `user_traveler`.`traveler_id` = `traveler`.`id`
+            WHERE `user_id` = :id';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery(['id' => $user->getId()]);
+        
+         // returns an array of arrays (i.e. a raw data set)
+        return $resultSet->fetchAllAssociative();
+        
+    }
+
+
 
 //    /**
 //     * @return User[] Returns an array of User objects

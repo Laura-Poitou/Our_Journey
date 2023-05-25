@@ -58,12 +58,14 @@
 }
 
 .pageContainer {
-    position: relative;
     min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .content-wrap {
-    padding-bottom: 4rem;
+    min-height: 50%;
 }
 
 #footer {
@@ -73,10 +75,14 @@
 }
 
 .footer-custom{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 4rem;
+    min-height: 50%;
+}
+
+main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .signatureContainer {
@@ -137,7 +143,7 @@
 
 .card-title {
    color:#f58235;
-   font-size: 1.5rem;
+   font-size: 1.7rem;
    font-weight: bold;
    font-family: Georgia, 'Times New Roman', Times, serif;
    font-style: italic;
@@ -288,6 +294,138 @@
     background-color: #a6d6d8;
 }
 
+
+/* ********************************************************************************* */
+
+/* ******* */
+/* Travels */
+/* ******* */
+
+#travel-title {
+    color: #4ac1c5;
+    font-size: 1.5rem;
+}
+
+#travel-card {
+    margin-bottom: 1rem;
+}
+
+.title-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+#btn-add {
+    margin: 0;
+    background-color: #e685a5;
+    color: #fff;
+}
+
+.travel-article {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* ********************************************************************************* */
+
+/* ****** */
+/* Travel */
+/* ****** */
+
+.travel_detail_container {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #DF5E88;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.4rem;
+}
+
+.travel-begin,
+.travel-end,
+.travel-traveler-number,
+.travel-description {
+    margin: 0.4rem 0 0.4rem 0;
+}
+
+.travel-value {
+    color: #000;
+    font-weight: normal;
+    font-style: normal;
+}
+
+#first-title {
+    text-align: center;
+}
+
+#sub-title {
+    font-size: 1.5rem;
+    font-style: normal;
+    color: #4ac1c5;
+}
+
+.sub-title-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+}
+
+.btn-container-edit-delete {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; 
+}
+
+#btn-delete-2 {
+    background-color: #a6d6d8;
+}
+
+#btn-modify-2 {
+    background-color: #fabf8e;
+}
+
+#btn-delete-2:hover,
+#btn-modify-2:hover {
+    background-color: #fff;
+    color: #000;
+} 
+
+#overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subForm-title {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #4ac1c5;
+    font-weight: bolder;
+    margin-bottom: 0.5rem; 
+    font-size: inherit;
+}
+
+.add_tag_list {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-decoration: none;
+    color: #DF5E88;        
+}
+
+.travel-travelers {
+    display: flex;
+    flex-direction: column;
+}
+
+#map { 
+    height: 15rem; 
+}
+    
+
 /* ********************************************************************************* */
 
 /* ************* */
@@ -334,23 +472,19 @@
     }
 
     #card-custom {
-        position: absolute;
-        top: 55%;
-        left: 25%;
         width: 50%!important;
+        margin-left: 25%;
     }
 
     #card-container {
-        position: absolute;
-        left: 25%;
         width: 50%!important;
+        margin-left: 25%;
     }
 
     #card-container-two {
-        position: absolute;
-        top: 60%;
-        left: 25%;
         width: 50%!important;
-    }
+        margin-left: 25%;
+    } 
+    
 }
 

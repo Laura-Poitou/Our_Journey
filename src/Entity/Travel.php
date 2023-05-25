@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TravelRepository::class)]
 class Travel
@@ -17,21 +18,35 @@ class Travel
     private ?int $id = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?\DateTimeImmutable $startDate = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?\DateTimeImmutable $endDate = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
+    #[Assert\Type('string')]
+    #[Assert\Length(min: 2, max: 100)]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?string $picture = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private ?int $travelerNumber = null;
 
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'travels')]
@@ -40,10 +55,14 @@ class Travel
     #[ORM\OneToMany(mappedBy: 'travel', targetEntity: Article::class)]
     private Collection $articles;
 
-    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'travel')]
+    #[ORM\ManyToMany(targetEntity: Destination::class, inversedBy: 'travel', cascade: ["persist"])]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private Collection $destinations;
 
-    #[ORM\ManyToMany(targetEntity: Traveler::class, inversedBy: 'travel')]
+    #[ORM\ManyToMany(targetEntity: Traveler::class, inversedBy: 'travel', cascade: ["persist"])]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
     private Collection $travelers;
 
     public function __construct()
