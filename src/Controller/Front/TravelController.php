@@ -104,9 +104,10 @@ class TravelController extends AbstractController
 
         return $this->renderForm('front/travel/add.html.twig', [
             'form' => $form,
-            'data' => $restCountriesAPI->fetchAll(),
+            //'data' => $restCountriesAPI->fetchAll(),
         ]);
     }
+
 
     # To show all articles related to a user travel
     #[Route('/travels/{travel_id}', name: 'front_travel_read')]
@@ -148,6 +149,81 @@ class TravelController extends AbstractController
         }
 
         return $this->redirectToRoute('front_travel_browse', [], Response::HTTP_SEE_OTHER);
+    }
+
+    # To edit a travel
+    #[Route('/travel/edit/{travel}', name: 'front_travel_edit')]
+    #[ParamConverter('travel', options: ['mapping' => ['travel' => 'id']])]
+    public function edit(TravelRepository $travelRepository, Request $request, UserRepository $userRepository, restCountriesAPI $restCountriesAPI, geocodingAPI $geocodingAPI, Travel $travel = null): Response
+    {
+        $form = $this->createForm(TravelType::class, $travel);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            /** @var \App\Entity\User $user */
+            $user = $this->getUser();
+
+            // to have travelers
+            $travelTravelers = $travel->getTravelers();
+            
+            // Associative table of user travelers
+            $userTravelersList = $userRepository->getUserTravelers($user);
+            
+            // Create table with user travelers name 
+            $userTravelersName = [];
+            foreach ($userTravelersList as $userTraveller) {
+                $userTravelersName[] = $userTraveller['name'];
+            }
+
+            // for each traveler of the travel
+            foreach ($travelTravelers as $traveler) {
+                // if the new traveler name is not in user traveler list add it 
+                if(!in_array($traveler->getName(), $userTravelersName)) {
+                    $user->addTraveler($traveler);
+                }
+            }
+
+            // to have destinations
+            $travelDestinations = $travel->getDestinations();
+
+            // to retrieve informations from API for each destination choose by user and retrieve to the new travel
+            $destinationNameArray = [];
+            $destinationsInfoArray = [];
+            foreach($travelDestinations as $destination) {
+                $destinationNameArray[] = $destination->getName();
+                foreach($destinationNameArray as $destinationName) {
+                    $destinationsInfoArray[] = $geocodingAPI->fetch("$destinationName");
+                }
+            }
+
+            // to set latitude and longitude for each destination choose by user
+            foreach($travelDestinations as $travelDestination) {
+                foreach($destinationsInfoArray as $destination) {
+                    $destinationName = $destination[0]['name'];
+                    $destinationLatitude = $destination[0]["lat"];
+                    $destinationLongitude = $destination[0]["lon"];
+                    if($travelDestination->getName() == $destinationName) {
+                        $travelDestination->setLatitude($destinationLatitude);
+                        $travelDestination->setLongitude($destinationLongitude);
+                    }
+                }
+            }
+                     
+            //persist and flush
+            $travelRepository->save($travel, true);
+
+            // persist and flush
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('front_travel_browse',  [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('front/travel/edit.html.twig', [
+            'form' => $form,
+            'travel' => $travel,
+            //'data' => $restCountriesAPI->fetchAll(),
+        ]);
     }
 
 }
