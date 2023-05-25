@@ -28,7 +28,7 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em = $managerRegistry->getManager();
-            $em->persist($review);
+            $em->persist($article);
             $em->flush();
 
             return $this->redirectToRoute('front_travel_read', ['travel_id' => $travel->getId()]);
