@@ -10,6 +10,7 @@ use App\Service\geocodingAPI;
 use App\Service\restCountriesAPI;
 use App\Repository\UserRepository;
 use App\Repository\TravelRepository;
+use Symfony\Bridge\Doctrine\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

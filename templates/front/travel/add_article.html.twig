@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <section class="log-form">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="card-title">Ajouter une visite</h1>
+
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'ma-classe'}}) }}
+                
+                {{ form_widget(form) }}
+                <button class="btn btn-custom" type="submit">Ajouter</button>
+                
+                {{ form_end(form) }}
+
+            </div>
+        </div>
+    </section>
+    
+{% endblock %}
