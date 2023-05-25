@@ -6,6 +6,7 @@ use App\Entity\Travel;
 use App\Entity\Article;
 use App\Entity\Traveler;
 use App\Form\TravelType;
+use App\Service\geocodingAPI;
 use App\Service\restCountriesAPI;
 use App\Repository\UserRepository;
 use App\Repository\TravelRepository;
@@ -31,7 +32,7 @@ class TravelController extends AbstractController
 
     # To add a travel
     #[Route('/travels/add', name: 'front_travel_add')]
-    public function add(TravelRepository $travelRepository, Request $request, UserRepository $userRepository, restCountriesAPI $restCountriesAPI): Response
+    public function add(TravelRepository $travelRepository, Request $request, UserRepository $userRepository, restCountriesAPI $restCountriesAPI, geocodingAPI $geocodingAPI): Response
     {
         $travel = new Travel();
 
@@ -68,7 +69,29 @@ class TravelController extends AbstractController
 
             // to have destinations
             $travelDestinations = $travel->getDestinations();
-            
+
+            // to retrieve informations from API for each destination choose by user and retrieve to the new travel
+            $destinationNameArray = [];
+            $destinationsInfoArray = [];
+            foreach($travelDestinations as $destination) {
+                $destinationNameArray[] = $destination->getName();
+                foreach($destinationNameArray as $destinationName) {
+                    $destinationsInfoArray[] = $geocodingAPI->fetch("$destinationName");
+                }
+            }
+
+            // to set latitude and longitude for each destination choose by user
+            foreach($travelDestinations as $travelDestination) {
+                foreach($destinationsInfoArray as $destination) {
+                    $destinationName = $destination[0]['name'];
+                    $destinationLatitude = $destination[0]["lat"];
+                    $destinationLongitude = $destination[0]["lon"];
+                    if($travelDestination->getName() == $destinationName) {
+                        $travelDestination->setLatitude($destinationLatitude);
+                        $travelDestination->setLongitude($destinationLongitude);
+                    }
+                }
+            }
                      
             //persist and flush
             $travelRepository->save($travel, true);
