@@ -140,12 +140,12 @@
                                 <li class="nav-item">
                                 {% if is_granted('ROLE_MANAGER') %} 
                                      <a 
-                                        {% if route_name == "back_home_index" %}
+                                        {% if route_name matches '/^app_back/' %}
                                         class="nav-link active" 
                                         {% else %}
                                         class="nav-link" 
                                         {% endif %} 
-                                        href="{{ path('back_home_index') }}">Backoffice
+                                        href="{{ path('app_back_home_index') }}">Backoffice
                                     </a>
                                 {% endif %}
 
