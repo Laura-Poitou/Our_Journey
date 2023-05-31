@@ -3,21 +3,15 @@
 {% block title %}Utilisateurs{% endblock %}
 
 {% block subbody %}
+    <article class="backoffice-sub-homepage">
+        <h1 class="backoffice-h1">Tous les utilisateurs :</h1>
 
-    <section class="container">
-        <h1 class="backoffice-h1">Utilisateurs</h1>
-
-        <table class="table">
+        <table class="table" id="backoffice-table">
             <thead>
                 <tr>
-                    <th>Id</th>
+                    <th id="id-th">Id</th>
                     <th>Email</th>
-                    <th>Roles</th>
-                    <th>Password</th>
-                    <th>Nickname</th>
-                    <th>Birthday</th>
-                    <th>Picture</th>
-                    <th>actions</th>
+                    <th>Pseudo</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,14 +19,18 @@
                 <tr>
                     <td>{{ user.id }}</td>
                     <td>{{ user.email }}</td>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                    <td>{{ user.password }}</td>
                     <td>{{ user.nickname }}</td>
-                    <td>{{ user.birthday ? user.birthday|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ user.picture }}</td>
+                </tr>
+                <tr>
                     <td>
-                        <a href="{{ path('app_back_user_show', {'id': user.id}) }}">show</a>
-                        <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">edit</a>
+                        <div class="table-link">
+                            <a href="{{ path('app_back_user_show', {'id': user.id}) }}">
+                                <button class="btn btn-custom btn-backoffice">Lire</button>
+                            </a>
+                            <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
+                                <button class="btn btn-custom btn-backoffice" id="btn-modify-2">Modifier</button>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             {% else %}
@@ -43,7 +41,9 @@
             </tbody>
         </table>
 
-        <a href="{{ path('app_back_user_new') }}">Create new</a>
-    </section>
+        <a href="{{ path('app_back_user_new') }}">
+            <button class="btn btn-custom btn-backoffice">Ajouter un nouvel utilisateur</button>
+        </a>
+    <article>
 
 {% endblock %}

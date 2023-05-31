@@ -195,6 +195,11 @@ main{
     margin-top: 1rem;
 }
 
+.btn-custom:hover {
+    color: #000;
+    background-color: #fff;
+}
+
 .form-control, 
 .input-group {
     width: 90%;
@@ -292,6 +297,12 @@ main{
 #btn-delete {
     width: 40%;
     background-color: #a6d6d8;
+    color: #fff;
+}
+
+#btn-delete:hover {
+    background-color: #fff;
+    color: #000;
 }
 
 
@@ -450,6 +461,56 @@ main{
     font-weight: bold;
 } 
 
+a.subnav-link.active {
+    color:#DF5E88;
+    font-weight: bold;
+}
+
+.bodyContainer{
+    margin-top: 1rem;
+    width: 100%;
+} 
+
+.backoffice-sub-homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+
+.backoffice-h1 {
+    color:#f58235;
+    font-size: 1.7rem;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin-bottom: 1.2rem;
+}
+
+.btn-backoffice {
+    margin-top: 0;
+}
+
+#backoffice-table {
+    width: 50%;
+}
+
+.table th {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #4ac1c5;
+    font-weight: bolder; 
+}
+
+.table>:not(caption)>*>* {
+    border-bottom-width: 0;
+}
+
+.table-link{
+    display: flex;
+    flex-direction: row;
+}
+
 /* ********************************************************************************* */
 
 /* ************* */
@@ -512,3 +573,16 @@ main{
     
 }
 
+/* @media (min-width:650px) {
+
+    .table tr th, 
+    .table tr td {
+        width:10%;
+        word-break: break-all;
+    }
+
+    .btn-backoffice {
+        margin-right: 1rem;
+    }
+
+} */

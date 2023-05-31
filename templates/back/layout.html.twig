@@ -6,7 +6,14 @@
 
     <!-- sous-nav back-office-->
     <nav class=" subnav container my-2">
-        <a class="subnav-link" href="{{ path('app_back_user_index') }}">Utilisateurs</a>
+        <a 
+            {% if route_name == "app_back_user_index" %}
+            class="subnav-link active"
+            {% else %}
+            class="subnav-link"
+            {% endif %}
+             href="{{ path('app_back_user_index') }}">Utilisateurs
+        </a>
         <a class="subnav-link" href="">Voyages</a>
         <a class="subnav-link" href="">Voyageurs</a>
         <a class="subnav-link" href="">Destinations</a>
