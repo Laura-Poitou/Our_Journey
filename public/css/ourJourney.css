@@ -520,6 +520,11 @@ a.subnav-link.active {
     color: #fff;
 }
 
+#btn-delete-backoffice:hover {
+    background-color: #fff;
+    color: #000;
+}
+
 /* ********************************************************************************* */
 
 /* ************* */
