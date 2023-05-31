@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
-class UserType extends AbstractType
+class UserEditType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -47,9 +47,6 @@ class UserType extends AbstractType
             ->add('picture', TextType::class, [
                 'label' => 'Image',
                 'empty_data' => null
-            ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Mot de passe'
             ])
             ->add('travelers' , EntityType::class, [
                 'label' => 'Voyageur(s)',

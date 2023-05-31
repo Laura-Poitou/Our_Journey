@@ -1,11 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/layout.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Utilisateurs{% endblock %}
 
-{% block body %}
-    <h1>Create new User</h1>
+{% block subbody %}
+    <article class="backoffice-user">
+        <div class="card w-100 mb-3" id="card-container">
 
-    {{ include('back/user/_form.html.twig') }}
+            <div class="card-body" id="card-body-container">
+                <h1 class="backoffice-h1">Ajout d'un utilisateur :</h1>
 
-    <a href="{{ path('app_back_user_index') }}">back to list</a>
+                {{ include('back/user/_form.html.twig', {'button_label': 'Ajouter'}) }}
+            </div>
+
+            <div class="btn-container">
+                <a href="{{ path('app_back_user_index') }}">
+                    <button class="btn btn-custom btn-backoffice">Retour</button>
+                </a>
+            </div>
+           
+        </div>
+    </article>
 {% endblock %}
