@@ -424,7 +424,31 @@ main{
 #map { 
     height: 15rem; 
 }
-    
+
+
+/* ********************************************************************************* */
+
+/* *********** */
+/* Back office */
+/* *********** */
+
+.subnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.subnav-link {
+    margin-right: 1rem;
+    text-decoration: none;
+    color:#e685a5;
+}   
+
+.subnav-link:hover {
+    color:#DF5E88;
+    font-weight: bold;
+} 
 
 /* ********************************************************************************* */
 

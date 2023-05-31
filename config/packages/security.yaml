@@ -47,10 +47,12 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         - { path: ^/api/login, roles: PUBLIC_ACCESS }
-        - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/(travels|travel),       roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/profile,       roles: IS_AUTHENTICATED_FULLY }
-        - { path: ^/article,       roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/(travels|travel), roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/profile, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/article, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/back, roles: ROLE_MANAGER }
+
 
 
     role_hierarchy:
