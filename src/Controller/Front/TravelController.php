@@ -5,7 +5,7 @@ namespace App\Controller\Front;
 use App\Entity\Travel;
 use App\Entity\Article;
 use App\Entity\Traveler;
-use App\Form\TravelType;
+use App\Form\Front\TravelType;
 use App\Service\geocodingAPI;
 use App\Service\restCountriesAPI;
 use App\Repository\UserRepository;

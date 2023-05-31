@@ -3,7 +3,7 @@
 namespace App\Controller\Front;
 
 use App\Entity\User;
-use App\Form\UserRegistrationType;
+use App\Form\Front\UserRegistrationType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

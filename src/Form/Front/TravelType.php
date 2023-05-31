@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Front;
 
 use App\Entity\Travel;
 use App\Entity\Traveler;
-use App\Form\TravelerType;
+use App\Form\Front\TravelerType;
 use App\Entity\Destination;
-use App\Form\DestinationType;
-use App\Form\UserTravelersType;
+use App\Form\Front\DestinationType;
+use App\Form\Front\UserTravelersType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\AbstractType;

@@ -4,7 +4,7 @@ namespace App\Controller\Front;
 
 use App\Entity\Travel;
 use App\Entity\Article;
-use App\Form\ArticleType;
+use App\Form\Front\ArticleType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
