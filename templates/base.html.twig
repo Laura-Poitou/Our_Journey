@@ -136,6 +136,19 @@
                                         href="{{ path('front_main_registration') }}">S'inscrire
                                     </a>
                                 {% endif %}
+
+                                <li class="nav-item">
+                                {% if is_granted('ROLE_MANAGER') %} 
+                                     <a 
+                                        {% if route_name == "back_home_index" %}
+                                        class="nav-link active" 
+                                        {% else %}
+                                        class="nav-link" 
+                                        {% endif %} 
+                                        href="{{ path('back_home_index') }}">Backoffice
+                                    </a>
+                                {% endif %}
+
                                 </li>
                             </ul>
                         </div>
