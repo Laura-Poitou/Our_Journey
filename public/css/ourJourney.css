@@ -511,6 +511,15 @@ a.subnav-link.active {
     flex-direction: row;
 }
 
+.backoffice{
+    margin-bottom: 1rem;
+}
+
+#btn-delete-backoffice {
+    background-color: #a6d6d8;
+    color: #fff;
+}
+
 /* ********************************************************************************* */
 
 /* ************* */

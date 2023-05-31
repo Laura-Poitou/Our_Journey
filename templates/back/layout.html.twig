@@ -7,7 +7,7 @@
     <!-- sous-nav back-office-->
     <nav class=" subnav container my-2">
         <a 
-            {% if route_name == "app_back_user_index" %}
+            {% if route_name matches '/^app_back_user/' %}
             class="subnav-link active"
             {% else %}
             class="subnav-link"
