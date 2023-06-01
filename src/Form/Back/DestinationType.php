@@ -1,20 +1,20 @@
 <?php
 
-namespace App\Form;
+namespace App\Form\Back;
 
-use App\Entity\Traveler;
+use App\Entity\Destination;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-class TravelerType extends AbstractType
+class DestinationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Prénom'
+                'label' => 'Villes ou pays visité(e)s'
             ])
         ;
     }
@@ -22,7 +22,10 @@ class TravelerType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Traveler::class,
+            'data_class' => Destination::class,
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ]
         ]);
     }
 }

@@ -1,0 +1,49 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block subbody %}
+    <article class="backoffice-sub-homepage">
+        <h1 class="backoffice-h1">Tous les utilisateurs</h1>
+
+        <table class="table" id="backoffice-table">
+            <thead>
+                <tr>
+                    <th id="id-th">Id</th>
+                    <th>Email</th>
+                    <th>Pseudo</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.nickname }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="table-link">
+                            <a href="{{ path('app_back_user_show', {'id': user.id}) }}">
+                                <button class="btn btn-custom btn-backoffice btn-read">Lire</button>
+                            </a>
+                            <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
+                                <button class="btn btn-custom btn-backoffice" id="btn-modify-2">Modifier</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_back_user_new') }}">
+            <button class="btn btn-custom btn-backoffice btn-backoffice-add">Ajouter un nouvel utilisateur</button>
+        </a>
+    <article>
+
+{% endblock %}

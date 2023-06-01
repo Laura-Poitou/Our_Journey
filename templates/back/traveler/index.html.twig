@@ -1,0 +1,48 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}Voyageurs{% endblock %}
+
+{% block subbody %}
+    <article class="backoffice-sub-homepage">
+        <h1 class="backoffice-h1">Tous les voyageurs</h1>
+
+        <table class="table" id="backoffice-table">
+            <thead>
+                <tr>
+                    <th id="id-th">Id</th>
+                    <th>Prénom</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for traveler in travelers %}
+                <tr>
+                    <td>{{ traveler.id }}</td>
+                    <td>{{ traveler.name }}</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="table-link">
+                            <a href="{{ path('app_back_traveler_show', {'id': traveler.id}) }}">
+                                <button class="btn btn-custom btn-backoffice btn-read">Lire</button>
+                            </a>
+                            <a href="{{ path('app_back_traveler_edit', {'id': traveler.id}) }}">
+                                <button class="btn btn-custom btn-backoffice" id="btn-modify-2">Modifier</button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_back_traveler_new') }}">
+            <button class="btn btn-custom btn-backoffice btn-backoffice-add">Ajouter un nouveau voyageur</button>
+        </a>
+    <article>
+
+{% endblock %}
+

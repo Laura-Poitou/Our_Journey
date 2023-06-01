@@ -1,0 +1,41 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block subbody %}
+    <article class="backoffice-user">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="backoffice-h1">Utilisateur</h1>
+
+                <div class="user-profile backoffice">
+                    <div class="user-id"> Id : <em class="user-value">{{ user.id }} </em>
+                    </div>
+                    <div class="user-email"> Email : <em class="user-value">{{ user.email }} </em>
+                    </div>
+                    <div class="user-roles"> Roles : <em class="user-value">{{ user.roles ? user.roles|json_encode :  '' }} </em>
+                    </div>
+                    <div class="user-nickname"> Pseudo : <em class="user-value">{{ user.nickname }} </em>
+                    </div>
+                    <div class="user-birthday"> Anniversaire : <em class="user-value">{{ user.birthday ? user.birthday|date ('d-m-Y') : '' }} </em>
+                    </div>
+                    <div class="user-picture"> Image : <em class="user-value">{{ user.picture }} </em>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <a href="{{ path('app_back_user_index') }}">
+                        <button class="btn btn-custom btn-backoffice">Retour</button>
+                    </a>
+
+                    <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
+                        <button class="btn btn-custom btn-backoffice" id="btn-modify-2">Modifier</button>
+                    </a>
+
+                    {{ include('back/user/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}

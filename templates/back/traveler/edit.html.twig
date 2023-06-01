@@ -1,0 +1,25 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}Voyageur{% endblock %}
+
+{% block subbody %}
+    <article class="backoffice-traveler">
+        <div class="card w-100 mb-3" id="card-container">
+
+            <div class="card-body" id="card-body-container">
+                <h1 class="backoffice-h1">Modification du voyageur</h1>
+
+                {{ include('back/traveler/_form.html.twig', {'button_label': 'Modifier'}) }}
+            </div>
+
+            <div class="btn-container">
+                <a href="{{ path('app_back_traveler_index') }}">
+                    <button class="btn btn-custom btn-backoffice">Retour</button>
+                </a>
+
+                {{ include('back/traveler/_delete_form.html.twig') }}
+            </div>
+           
+        </div>
+    </article>
+{% endblock %}

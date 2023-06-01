@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% set route_name = app.request.attributes.get('_route') %}
+
+{% block subnav %}
+
+    <!-- sous-nav back-office-->
+    <nav class=" subnav container my-2">
+        <a 
+            {% if route_name matches '/^app_back_user/' %}
+            class="subnav-link active"
+            {% else %}
+            class="subnav-link"
+            {% endif %}
+             href="{{ path('app_back_user_index') }}">Utilisateurs
+        </a>
+        <a 
+            {% if route_name matches '/^app_back_travel_/' %}
+            class="subnav-link active"
+            {% else %}
+            class="subnav-link"
+            {% endif %}
+             href="{{ path('app_back_travel_index') }}">Voyages
+        </a>
+        <a 
+            {% if route_name matches '/^app_back_traveler/' %}
+            class="subnav-link active"
+            {% else %}
+            class="subnav-link"
+            {% endif %}
+             href="{{ path('app_back_traveler_index') }}">Voyageurs
+        </a>
+        <a 
+            {% if route_name matches '/^app_back_destination/' %}
+            class="subnav-link active"
+            {% else %}
+            class="subnav-link"
+            {% endif %}
+             href="{{ path('app_back_destination_index') }}">Destinations
+        </a>
+        <a class="subnav-link" href="">Articles</a>
+        <a class="subnav-link" href="">Commentaires</a>
+        <a class="subnav-link" href="">Astuces</a>
+    </nav>
+
+{% endblock %}
+
+{% block body %}
+    <section class="bodyContainer">
+        {% block subbody %}{% endblock %}
+    </section>
+{% endblock %}

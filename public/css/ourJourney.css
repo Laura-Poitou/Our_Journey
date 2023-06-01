@@ -195,6 +195,11 @@ main{
     margin-top: 1rem;
 }
 
+.btn-custom:hover {
+    color: #000;
+    background-color: #fff;
+}
+
 .form-control, 
 .input-group {
     width: 90%;
@@ -292,6 +297,12 @@ main{
 #btn-delete {
     width: 40%;
     background-color: #a6d6d8;
+    color: #fff;
+}
+
+#btn-delete:hover {
+    background-color: #fff;
+    color: #000;
 }
 
 
@@ -356,7 +367,7 @@ main{
 .travel-value {
     color: #000;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 #first-title {
@@ -424,7 +435,118 @@ main{
 #map { 
     height: 15rem; 
 }
-    
+
+
+/* ********************************************************************************* */
+
+/* *********** */
+/* Back office */
+/* *********** */
+
+.subnav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.subnav-link {
+    margin-right: 1rem;
+    text-decoration: none;
+    color:#e685a5;
+}   
+
+.subnav-link:hover {
+    color:#DF5E88;
+    font-weight: bold;
+} 
+
+a.subnav-link.active {
+    color:#DF5E88;
+    font-weight: bold;
+}
+
+.bodyContainer{
+    margin-top: 1rem;
+    width: 100%;
+} 
+
+.backoffice-sub-homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+
+.backoffice-h1 {
+    color:#f58235;
+    font-size: 1.7rem;
+    font-weight: bold;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+    margin-bottom: 1.2rem;
+}
+
+.btn-backoffice {
+    margin-top: 0;
+}
+
+.btn-backoffice-add {
+    margin-bottom: 1rem;
+}
+
+#backoffice-table {
+    width: 50%;
+}
+
+.table th {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #4ac1c5;
+    font-weight: bolder; 
+}
+
+.table>:not(caption)>*>* {
+    border-bottom-width: 0;
+}
+
+.table-link{
+    display: flex;
+    flex-direction: row;
+}
+
+.backoffice{
+    margin-bottom: 1rem;
+}
+
+#btn-delete-backoffice {
+    background-color: #a6d6d8;
+    color: #fff;
+}
+
+#btn-delete-backoffice:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.travel-profile,
+.traveler-profile,
+.destination-profile {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #4ac1c5;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+}
+
+.traveler-value,
+.destination-value {
+    color: #000;
+    font-weight: normal;
+    font-style: italic;
+}
+
+
 
 /* ********************************************************************************* */
 
@@ -488,3 +610,10 @@ main{
     
 }
 
+@media (min-width:650px) {
+
+    .btn-read {
+        margin-right: 1rem;
+    }
+
+}

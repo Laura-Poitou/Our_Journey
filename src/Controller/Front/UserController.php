@@ -3,8 +3,8 @@
 namespace App\Controller\Front;
 
 use App\Entity\User;
-use App\Form\UserType;
-use App\Form\UserPasswordType;
+use App\Form\Front\UserType;
+use App\Form\Front\UserPasswordType;
 use App\Repository\UserRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
