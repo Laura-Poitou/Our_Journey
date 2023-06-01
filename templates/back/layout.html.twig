@@ -22,7 +22,14 @@
             {% endif %}
              href="{{ path('app_back_travel_index') }}">Voyages
         </a>
-        <a class="subnav-link" href="">Voyageurs</a>
+        <a 
+            {% if route_name matches '/^app_back_traveler/' %}
+            class="subnav-link active"
+            {% else %}
+            class="subnav-link"
+            {% endif %}
+             href="{{ path('app_back_traveler_index') }}">Voyageurs
+        </a>
         <a class="subnav-link" href="">Destinations</a>
         <a class="subnav-link" href="">Articles</a>
         <a class="subnav-link" href="">Commentaires</a>

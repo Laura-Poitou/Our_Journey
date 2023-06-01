@@ -492,6 +492,10 @@ a.subnav-link.active {
     margin-top: 0;
 }
 
+.btn-backoffice-add {
+    margin-bottom: 1rem;
+}
+
 #backoffice-table {
     width: 50%;
 }
@@ -525,12 +529,19 @@ a.subnav-link.active {
     color: #000;
 }
 
-.travel-profile {
+.travel-profile,
+.traveler-profile {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #4ac1c5;
     font-weight: bolder;
     display: flex;
     flex-direction: column;
+}
+
+.traveler-value {
+    color: #000;
+    font-weight: normal;
+    font-style: italic;
 }
 
 
