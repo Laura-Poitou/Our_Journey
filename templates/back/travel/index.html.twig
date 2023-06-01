@@ -1,33 +1,36 @@
 {% extends 'back/layout.html.twig' %}
 
-{% block title %}Utilisateurs{% endblock %}
+{% block title %}Voyages{% endblock %}
 
 {% block subbody %}
     <article class="backoffice-sub-homepage">
-        <h1 class="backoffice-h1">Tous les utilisateurs :</h1>
+        <h1 class="backoffice-h1">Tous les voyages :</h1>
 
         <table class="table" id="backoffice-table">
             <thead>
                 <tr>
                     <th id="id-th">Id</th>
-                    <th>Email</th>
-                    <th>Pseudo</th>
+                    <th>Titre</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+
                 </tr>
             </thead>
             <tbody>
-            {% for user in users %}
+            {% for travel in travel %}
                 <tr>
-                    <td>{{ user.id }}</td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.nickname }}</td>
+                    <td>{{ travel.id }}</td>
+                    <td>{{ travel.title }}</td>
+                    <td>{{ travel.startDate ? travel.startDate|date('d-m-Y') : '' }}</td>
+                    <td>{{ travel.endDate ? travel.endDate|date('d-m-Y') : '' }}</td>
                 </tr>
                 <tr>
                     <td>
                         <div class="table-link">
-                            <a href="{{ path('app_back_user_show', {'id': user.id}) }}">
+                            <a href="{{ path('app_back_travel_show', {'id': travel.id}) }}">
                                 <button class="btn btn-custom btn-backoffice btn-read">Lire</button>
                             </a>
-                            <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">
+                            <a href="{{ path('app_back_travel_edit', {'id': travel.id}) }}">
                                 <button class="btn btn-custom btn-backoffice" id="btn-modify-2">Modifier</button>
                             </a>
                         </div>
@@ -45,5 +48,4 @@
             <button class="btn btn-custom btn-backoffice">Ajouter un nouvel utilisateur</button>
         </a>
     <article>
-
 {% endblock %}

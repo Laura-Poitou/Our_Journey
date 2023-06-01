@@ -367,7 +367,7 @@ main{
 .travel-value {
     color: #000;
     font-weight: normal;
-    font-style: normal;
+    font-style: italic;
 }
 
 #first-title {
@@ -525,6 +525,16 @@ a.subnav-link.active {
     color: #000;
 }
 
+.travel-profile {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #4ac1c5;
+    font-weight: bolder;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
 /* ********************************************************************************* */
 
 /* ************* */
@@ -587,16 +597,10 @@ a.subnav-link.active {
     
 }
 
-/* @media (min-width:650px) {
+@media (min-width:650px) {
 
-    .table tr th, 
-    .table tr td {
-        width:10%;
-        word-break: break-all;
-    }
-
-    .btn-backoffice {
+    .btn-read {
         margin-right: 1rem;
     }
 
-} */
+}

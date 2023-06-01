@@ -1,0 +1,47 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}Voyage{% endblock %}
+
+{% block subbody %}
+    <article class="backoffice-travel">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="backoffice-h1">Voyage : {{travel.title}}</h1>
+
+                <div class="travel-profile backoffice">
+                    <div class="travel-id"> Id : <em class="travel-value">{{ travel.id }} </em>
+                    </div>
+                    <div class="travel-begin"> Début : <em class="travel-value">{{ travel.startDate ? travel.startDate|date('d-m-Y') : '' }} </em>
+                    </div>
+                    <div class="travel-end"> Fin : <em class="travel-value">{{ travel.endDate ? travel.endDate|date('d-m-Y') : '' }} </em>
+                    </div>
+                    <div class="travel-traveler-number"> Nombre de voyageurs : <em class="travel-value">{{ travel.travelerNumber }}</em></div>
+                    <div class="travel-travelers"> Voyageurs : 
+                        <ul>
+                            {% for travelTraveler in travel.travelers %}
+                            <li> <em class="travel-value">{{ travelTraveler.name }}</em> </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="travel-description"> Description :  <em class="travel-value">{{ travel.description }}</em></div>
+                    <div class="travel-picture"> Image : <img src="{{ asset(travel.picture) }}" class="card-img-top" alt="Photo du {{ travel.title }}"> </em>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <a href="{{ path('app_back_travel_index') }}">
+                        <button class="btn btn-custom btn-backoffice">Retour</button>
+                    </a>
+
+                    <a href="{{ path('app_back_travel_edit', {'id': travel.id}) }}">
+                        <button class="btn btn-custom btn-backoffice" id="btn-modify-2">Modifier</button>
+                    </a>
+
+                    {{ include('back/travel/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}
+
