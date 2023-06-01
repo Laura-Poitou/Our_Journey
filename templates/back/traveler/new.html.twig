@@ -1,11 +1,23 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/layout.html.twig' %}
 
-{% block title %}New Traveler{% endblock %}
+{% block title %}Voyageur{% endblock %}
 
-{% block body %}
-    <h1>Create new Traveler</h1>
+{% block subbody %}
+    <article class="backoffice-traveler">
+        <div class="card w-100 mb-3" id="card-container">
 
-    {{ include('back/traveler/_form.html.twig') }}
+            <div class="card-body" id="card-body-container">
+                <h1 class="backoffice-h1">Ajout d'un voyageur :</h1>
 
-    <a href="{{ path('app_back_traveler_index') }}">back to list</a>
+                {{ include('back/traveler/_form.html.twig', {'button_label': 'Ajouter'}) }}
+            </div>
+
+            <div class="btn-container">
+                <a href="{{ path('app_back_traveler_index') }}">
+                    <button class="btn btn-custom btn-backoffice">Retour</button>
+                </a>
+            </div>
+           
+        </div>
+    </article>
 {% endblock %}

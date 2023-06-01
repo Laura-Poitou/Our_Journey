@@ -3,7 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\Traveler;
-use App\Form\TravelerType;
+use App\Form\Back\CompleteTravelerType;
 use App\Repository\TravelerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class TravelerController extends AbstractController
     public function new(Request $request, TravelerRepository $travelerRepository): Response
     {
         $traveler = new Traveler();
-        $form = $this->createForm(TravelerType::class, $traveler);
+        $form = $this->createForm(CompleteTravelerType::class, $traveler);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +51,7 @@ class TravelerController extends AbstractController
     #[Route('/{id}/edit', name: 'app_back_traveler_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Traveler $traveler, TravelerRepository $travelerRepository): Response
     {
-        $form = $this->createForm(TravelerType::class, $traveler);
+        $form = $this->createForm(CompleteTravelerType::class, $traveler);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
