@@ -1,13 +1,13 @@
 {% extends 'back/layout.html.twig' %}
 
-{% block title %}Utilisateurs{% endblock %}
+{% block title %}Utilisateur{% endblock %}
 
 {% block subbody %}
     <article class="backoffice-user">
         <div class="card w-100 mb-3" id="card-container">
 
             <div class="card-body" id="card-body-container">
-                <h1 class="backoffice-h1">Ajout d'un utilisateur :</h1>
+                <h1 class="backoffice-h1">Ajout d'un utilisateur</h1>
 
                 {{ include('back/user/_form.html.twig', {'button_label': 'Ajouter'}) }}
             </div>
