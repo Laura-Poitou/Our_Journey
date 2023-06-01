@@ -75,6 +75,9 @@ class TravelType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Travel::class,
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ]
         ]);
     }
 }

@@ -15,7 +15,7 @@
              href="{{ path('app_back_user_index') }}">Utilisateurs
         </a>
         <a 
-            {% if route_name matches '/^app_back_travel/' %}
+            {% if route_name matches '/^app_back_travel_/' %}
             class="subnav-link active"
             {% else %}
             class="subnav-link"
@@ -30,7 +30,14 @@
             {% endif %}
              href="{{ path('app_back_traveler_index') }}">Voyageurs
         </a>
-        <a class="subnav-link" href="">Destinations</a>
+        <a 
+            {% if route_name matches '/^app_back_destination/' %}
+            class="subnav-link active"
+            {% else %}
+            class="subnav-link"
+            {% endif %}
+             href="{{ path('app_back_destination_index') }}">Destinations
+        </a>
         <a class="subnav-link" href="">Articles</a>
         <a class="subnav-link" href="">Commentaires</a>
         <a class="subnav-link" href="">Astuces</a>

@@ -40,6 +40,9 @@ class CompleteTravelerType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Traveler::class,
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ]
         ]);
     }
 }

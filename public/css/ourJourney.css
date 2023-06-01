@@ -530,7 +530,8 @@ a.subnav-link.active {
 }
 
 .travel-profile,
-.traveler-profile {
+.traveler-profile,
+.destination-profile {
     font-family: Georgia, 'Times New Roman', Times, serif;
     color: #4ac1c5;
     font-weight: bolder;
@@ -538,7 +539,8 @@ a.subnav-link.active {
     flex-direction: column;
 }
 
-.traveler-value {
+.traveler-value,
+.destination-value {
     color: #000;
     font-weight: normal;
     font-style: italic;

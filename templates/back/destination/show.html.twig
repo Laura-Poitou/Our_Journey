@@ -1,0 +1,36 @@
+{% extends 'back/layout.html.twig' %}
+
+{% block title %}Destination{% endblock %}
+
+{% block subbody %}
+    <article class="backoffice-destination">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <h1 class="backoffice-h1">Destination : {{destination.name}}</h1>
+
+                <div class="destination-profile backoffice">
+                    <div class="destination-id"> Id : <em class="destination-value">{{ destination.id }} </em>
+                    </div>
+                    <div class="destination-longitude"> Longitude : <em class="destination-value">{{ destination.longitude }} </em>
+                    </div>
+                    <div class="destination-latitude"> Latitude : <em class="destination-value">{{ destination.latitude }} </em>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <a href="{{ path('app_back_destination_index') }}">
+                        <button class="btn btn-custom btn-backoffice">Retour</button>
+                    </a>
+
+                    <a href="{{ path('app_back_destination_edit', {'id': destination.id}) }}">
+                        <button class="btn btn-custom btn-backoffice" id="btn-modify-2">Modifier</button>
+                    </a>
+
+                    {{ include('back/destination/_delete_form.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </article>
+
+{% endblock %}
+
