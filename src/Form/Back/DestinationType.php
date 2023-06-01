@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form\Front;
+namespace App\Form\Back;
 
 use App\Entity\Destination;
 use Symfony\Component\Form\AbstractType;

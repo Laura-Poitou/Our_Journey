@@ -10,9 +10,9 @@
                 {# form options #}
                 {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'ma-classe'}}) }}
 
+                    {{ form_row(form.title) }}
                     {{ form_row(form.startDate) }}
                     {{ form_row(form.endDate) }}
-                    {{ form_row(form.title) }}
                     {{ form_row(form.description) }}
                     {{ form_row(form.picture) }}
                     {{ form_row(form.travelerNumber) }}

@@ -1,0 +1,37 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'ma-classe'}}) }}
+
+    {{ form_row(form.title) }}
+    {{ form_row(form.startDate) }}
+    {{ form_row(form.endDate) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.picture) }}
+    {{ form_row(form.travelerNumber) }}
+
+    <h2 class="subForm-title">Voyageur(s)</h2>
+    <p>Pour ajouter des voyageurs au voyage : <br> Cliquez sur Ajouter un voyageur, indiquez son prénom puis recommencez autant de fois qu'il le faut. <br></p>
+    
+    <ul class="travelers"
+    data-index="{{ form.travelers|length > 0 ? form.travelers|last.vars.name + 1 : 0 }}"
+    data-prototype="{{ form_widget(form.travelers.vars.prototype)|e('html_attr') }}"
+    >
+        {% for traveler in form.travelers %}
+            <li> {{ form_row(traveler.name) }} </li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="subForm-title"> Destinations </h2>
+    <p>Pour ajouter des destinations (pays ou villes) au voyage : <br> Cliquez sur Ajouter une destination, indiquez son nom puis recommencez autant de fois qu'il le faut. <br></p>
+    <ul class="destinations"
+    data-index="{{ form.destinations|length > 0 ? form.destinations|last.vars.name + 1 : 0 }}"
+    data-prototype="{{ form_widget(form.destinations.vars.prototype)|e('html_attr') }}"
+    >
+        {% for destination in form.destinations %}
+            <li> {{ form_row(destination.name) }} </li>
+        {% endfor %}
+    </ul>
+
+    {{ form_row(form.users) }}
+
+    <button class="btn btn-custom btn-backoffice" id="btn-modify-2">{{ button_label|default('Save') }}</button>
+                    
+{{ form_end(form) }}
