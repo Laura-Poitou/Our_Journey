@@ -5,8 +5,9 @@ namespace App\Controller\Front;
 use App\Entity\Travel;
 use App\Entity\Article;
 use App\Entity\Traveler;
-use App\Form\Front\TravelType;
 use App\Service\geocodingAPI;
+use App\Form\Front\TravelType;
+use App\Repository\TipRepository;
 use App\Service\restCountriesAPI;
 use App\Repository\UserRepository;
 use App\Repository\TravelRepository;
@@ -128,13 +129,14 @@ class TravelController extends AbstractController
     # To show an article related to a user travel
     #[Route('/travel/{travel_id}/article/{id}', name: 'front_travel_readArticle')]
     #[ParamConverter('travel', options: ['mapping' => ['travel_id' => 'id']])]
-    public function readArticle(Article $article, Travel $travel, TravelRepository $travelRepository): Response
+    public function readArticle(Article $article, Travel $travel, TravelRepository $travelRepository, TipRepository $tipRepository): Response
     {
          /** @var \App\Entity\User $user */
          $user = $this->getUser();
 
         return $this->render('front/travel/readArticle.html.twig', [
             'article' => $travelRepository->findTravelArticle($user, $travel, $article),
+            'tips' => $tipRepository->findArticleTips($user, $article),
         ]);
     }
 

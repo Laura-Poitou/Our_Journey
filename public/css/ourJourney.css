@@ -439,6 +439,49 @@ main{
 
 /* ********************************************************************************* */
 
+/* ******* */
+/* Article */
+/* ******* */
+
+blockquote .card-text{
+    font-size: 1rem;
+}
+
+.card-tip {
+    margin-bottom: 1rem;
+}
+
+.card-tip .card-header {
+    background-color: #4ec8cc69;
+    font-size: medium;
+}
+
+.tip-sub-title-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    align-items: center;
+}
+
+.blockquote-footer {
+    color: #DF5E88;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#like-button {
+    margin-left: 1rem;
+}
+
+cite {
+    margin-left: 0.2rem;
+}
+
+/* ********************************************************************************* */
+
 /* *********** */
 /* Back office */
 /* *********** */

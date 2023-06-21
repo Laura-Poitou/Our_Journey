@@ -39,6 +39,27 @@ class TipRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return [] Returns tips related to a user travel article
+    */
+    public function findArticleTips($user, $article): array
+    {
+        $connection = $this->getEntityManager()->getConnection();
+
+        $sql = "
+        SELECT `tip`.*, `user`.`nickname`
+        FROM `tip`
+        INNER JOIN `article` ON `article`.`id` = `tip`.`article_id`
+        INNER JOIN `user` ON `user`.`id` = `tip`.`user_id`
+        WHERE `user_id` = :userId AND `article`.`id` = :articleId";
+
+        $statement = $connection->prepare($sql);       
+        $resultSet = $statement->executeQuery(['userId' => $user->getId(), 'articleId' => $article->getId()]);
+
+        return $resultSet->fetchAllAssociative();
+
+    }
+
 //    /**
 //     * @return Tip[] Returns an array of Tip objects
 //     */
