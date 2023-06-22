@@ -5,13 +5,17 @@ namespace App\Controller\Front;
 use App\Entity\Tip;
 use App\Entity\Travel;
 use App\Entity\Article;
+use App\Entity\TipLike;
 use App\Service\LikeManager;
 use App\Repository\TipRepository;
+use App\Repository\TipLikeRepository;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class TipController extends AbstractController
 {
@@ -51,5 +55,76 @@ class TipController extends AbstractController
             'travel_id' => $travel->getId(),
             'id' => $article->getId(),
         ));
+    }
+
+    /**
+     * To like or dislike a tip
+     *
+     * @param Tip $tip
+     * @param ManagerRegistry $managerRegistry
+     * @param TipLikeRepository $tipLikeRepository
+     * @return Response
+     */
+    #[Route('/tip/{id}/like', name: 'front_tip_like')]
+    public function like(Tip $tip, ManagerRegistry $managerRegistry, TipLikeRepository $tipLikeRepository) : Response 
+    {
+        $user = $this->getUser();
+
+        // If the user is not connected
+        if(!$user) {
+            // return json with status code 403 and a message
+            return $this->json(
+                [
+                   'code' => 403,
+                   'message' => 'Unauthorized' 
+                ],
+                403 // real code (HTTP status)
+                );
+        }
+
+        // If the user already likes the tip
+        if($tip->isLikedByUser($user)) { 
+            $like = $tipLikeRepository->findOneBy( // liked tip
+                [
+                    'tip' => $tip,
+                    'user' => $user
+                ]
+                );
+            
+            // to delete the like and execute the request (save in BD)
+            $em = $managerRegistry->getManager();
+            $em->remove($like);
+            $em->flush();
+
+            // return a json with status code, a massage and the number of likes on the tip
+            return $this->json(
+                [
+                   'code' => 200,
+                   'message' => 'Like deleted',
+                   'likes' => $tipLikeRepository->count(['tip' => $tip])
+                ],
+                200
+                );
+        }
+
+        // If the user wants like the tip
+        $like = new TipLike;
+        $like->setTip($tip);
+        $like->setUser($user);
+
+        $em = $managerRegistry->getManager();
+        $em->persist($like);
+        $em->flush();
+
+        return $this->json(
+            [
+               'code' => 200,
+               'message' => 'Like added',
+               'likes' => $tipLikeRepository->count(['tip' => $tip])
+            ],
+            200
+            );
+
+        
     }
 }

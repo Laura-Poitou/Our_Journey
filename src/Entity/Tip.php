@@ -162,7 +162,7 @@ class Tip
             if($like->getUser() === $user) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
 }

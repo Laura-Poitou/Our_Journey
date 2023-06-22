@@ -37,18 +37,19 @@
                                     <cite title="Source Title"> {{ tip.nickname }}
                                     </cite>
                                     
-                                    <a href="#" class="btn btn-link js-like">
+                                    <a href="{{ path('front_tip_like', {'id': tip.id}) }}" class="btn btn-link js-like">
                                         {% for tipLike in tips %} {# for each tip in th array with all tips (not according to article or user #}
-                                            {% if tip.id == tipLike.id %} {# if the id of tip correspond to the id of tip in the array with tips by user and article #}
 
+                                            {% if tip.id == tipLike.id %} {# if the id of tip correspond to the id of tip in the array with tips by user and article #}
                                                 {% if app.user and tipLike.isLikedByUser(app.user) %} {# if the user have likes #}
-                                                    <i class="fa-sharp fa-solid fa-thumbs-up"></i> {# colored thumb #}  
+                                                    <i class="fa-sharp fa-solid fa-thumbs-up"></i> {# colored thumb #}
                                                 {% else %}
                                                     <i class="fa-regular fa-thumbs-up"></i> {# empty thumb #}
                                                 {% endif %}
                                         
                                                 <span class="js-likes">{{ tipLike.likes | length }}</span> {# show likes number #} 
                                             {% endif %}
+                                            
                                         {% endfor %}
 
                                         <span class="js-label">J'aime</span>
@@ -69,4 +70,25 @@
 
     </section>
 
+{% endblock %}
+
+{% block javascript %}
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        function handleOnClickBtnLike(event) {
+            event.preventDefault();
+
+            const url = this.href;
+
+            axios.get(url).then(function(response)) {
+                console.log(response);
+            }
+        }
+
+        let likeLinks = document.querySelectorAll('a.js-like');
+        for (const currentLink of likeLinks) {
+            currentLink.addEventListener('click',handleOnClickBtnLike);
+        }
+
+    </script>
 {% endblock %}
