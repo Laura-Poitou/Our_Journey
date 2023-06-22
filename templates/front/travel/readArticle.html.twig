@@ -72,23 +72,3 @@
 
 {% endblock %}
 
-{% block javascript %}
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
-    <script>
-        function handleOnClickBtnLike(event) {
-            event.preventDefault();
-
-            const url = this.href;
-
-            axios.get(url).then(function(response)) {
-                console.log(response);
-            }
-        }
-
-        let likeLinks = document.querySelectorAll('a.js-like');
-        for (const currentLink of likeLinks) {
-            currentLink.addEventListener('click',handleOnClickBtnLike);
-        }
-
-    </script>
-{% endblock %}
