@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TipController!{% endblock %}
+
+{% block body %}
+    <section class="article">
+        <div class="card w-100 mb-3" id="card-container">
+            <div class="card-body" id="card-body-container">
+                <div class="article_detail_container">
+
+                {% for tip in tips %}
+
+                    <div class="card card-tip">
+                        <div class="card-header">
+                            {{ tip.title }}
+                        </div>
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                            <p class="card-text"> {{ tip.content }} </p>
+                            <footer class="blockquote-footer">
+                                {{ tip.publishedDate ? tip.publishedDate|date('d-m-Y') : '' }}
+                                <cite title="Source Title"> {{ tip.user.nickname }}
+                                </cite>
+                                
+                                <a href="{{ path('front_tip_like', {'id': tip.id}) }}" class="btn btn-link js-like">
+                                    
+                                            {% if app.user and tip.isLikedByUser(app.user) %} {# if the user have likes #}
+                                                <i class="fa-sharp fa-solid fa-thumbs-up"></i> {# colored thumb #}
+                                            {% else %}
+                                                <i class="fa-regular fa-thumbs-up"></i> {# empty thumb #}
+                                            {% endif %}
+                                    
+                                            <span class="js-likes">{{ tip.likes | length }}</span> {# show likes number #} 
+                                        
+
+                                    <span class="js-label">J'aime</span>
+                                </a>
+
+                            </footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                
+                {% endfor %}
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+
+    
+
+
+
+</div>
+{% endblock %}

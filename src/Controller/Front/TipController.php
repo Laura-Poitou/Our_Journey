@@ -9,7 +9,6 @@ use App\Entity\TipLike;
 use App\Service\LikeManager;
 use App\Repository\TipRepository;
 use App\Repository\TipLikeRepository;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,15 +18,15 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class TipController extends AbstractController
 {
-    #[Route('/front/tip', name: 'app_front_tip')]
-    public function index(TipRepository $tipRepository): Response
+    #[Route('/front/tips', name: 'front_tip_browse')]
+    public function browse(TipRepository $tipRepository): Response
     {
-
-        $tips = $tipRepository->findAll();
-        // dd($tips);
-
-        return $this->render('front/tip/index.html.twig', [
-            'tips' => $tips,
+        $user = $this->getUser();
+        
+        return $this->render('front/tip/browse.html.twig', [
+            'tips' => $tipRepository->findBy([
+                'user' => $user,
+            ]),
         ]);
     }
 
