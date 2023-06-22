@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TipRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,6 +33,14 @@ class Tip
 
     #[ORM\ManyToOne(inversedBy: 'tips')]
     private ?Article $article = null;
+
+    #[ORM\OneToMany(mappedBy: 'tip', targetEntity: TipLike::class)]
+    private Collection $likes;
+
+    public function __construct()
+    {
+        $this->likes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -105,6 +115,36 @@ class Tip
     public function setArticle(?Article $article): self
     {
         $this->article = $article;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TipLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(TipLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setTip($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(TipLike $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getTip() === $this) {
+                $like->setTip(null);
+            }
+        }
 
         return $this;
     }

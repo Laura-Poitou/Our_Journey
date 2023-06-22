@@ -44,8 +44,7 @@ class TipController extends AbstractController
         // redirection to list of liked tips
         return $this->redirectToRoute('front_travel_readArticle', array(
             'travel_id' => $travel->getId(),
-            'article_id' => $article->getId(),
-            'id' => $tip->getId(),
+            'id' => $article->getId(),
         ));
     }
 }
