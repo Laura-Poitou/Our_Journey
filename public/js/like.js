@@ -24,6 +24,12 @@ const like = {
                 icone.classList.replace('fa-regular', 'fa-solid');
             }
 
+        }).catch(function(error) {
+            if(error.response.status === 403) {
+                window.alert('Unauthorized');
+            } else {
+                window.alert('Error, tried later')
+            }
         })
         },
 }
