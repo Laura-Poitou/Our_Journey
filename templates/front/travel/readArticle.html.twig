@@ -36,24 +36,21 @@
                                     {{ tip.published_date ? tip.published_date|date('d-m-Y') : '' }}
                                     <cite title="Source Title"> {{ tip.nickname }}
                                     </cite>
-                                    {# <a href= "{{ path('front_tip_toggle', {'id': tip.id, 'article_id': article.id, 'travel_id': travel.id}) }}">
-                                        <button type="button" class="btn btn-primary position-relative" id="like-button">
-                                            J'aime
-                                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                                {{ tip.like_number }}
-                                                <span class="visually-hidden">nombre de mention j'aime</span>
-                                            </span>
-                                        </button>
-                                    </a> #}
-
                                     
-                                    <a href="#" class="btn btn-link">
-                                        <i class="fa-regular fa-thumbs-up"></i>
-                                        {% for tipLike in tips %}
-                                            {% if tip.id == tipLike.id %}  
-                                                <span class="js-likes">{{ tipLike.likes | length }}</span>
+                                    <a href="#" class="btn btn-link js-like">
+                                        {% for tipLike in tips %} {# for each tip in th array with all tips (not according to article or user #}
+                                            {% if tip.id == tipLike.id %} {# if the id of tip correspond to the id of tip in the array with tips by user and article #}
+
+                                                {% if app.user and tipLike.isLikedByUser(app.user) %} {# if the user have likes #}
+                                                    <i class="fa-sharp fa-solid fa-thumbs-up"></i> {# colored thumb #}  
+                                                {% else %}
+                                                    <i class="fa-regular fa-thumbs-up"></i> {# empty thumb #}
+                                                {% endif %}
+                                        
+                                                <span class="js-likes">{{ tipLike.likes | length }}</span> {# show likes number #} 
                                             {% endif %}
                                         {% endfor %}
+
                                         <span class="js-label">J'aime</span>
                                     </a>
 
