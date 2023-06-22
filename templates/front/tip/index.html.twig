@@ -9,12 +9,16 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/html/Our_Journey/src/Controller/Front/TipController.php'|file_link(0) }}">src/Controller/Front/TipController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/html/Our_Journey/templates/front/tip/index.html.twig'|file_link(0) }}">templates/front/tip/index.html.twig</a></code></li>
-    </ul>
+    {% for tip in tips %}
+
+   
+    <p>Astuce numéro : {{ tip.id }}</p>
+
+    <p> Nombre de like : {{ tip.likes | length }}</p>
+    
+    {% endfor %}
+
 </div>
 {% endblock %}

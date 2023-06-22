@@ -136,8 +136,9 @@ class TravelController extends AbstractController
 
         return $this->render('front/travel/readArticle.html.twig', [
             'article' => $travelRepository->findTravelArticle($user, $travel, $article),
-            'tips' => $tipRepository->findArticleTips($user, $article),
-            'travel' =>$travel,
+            'articleTips' => $tipRepository->findArticleTips($user, $article),
+            'travel' => $travel,
+            'tips' => $tipRepository->findAll(),
         ]);
     }
 

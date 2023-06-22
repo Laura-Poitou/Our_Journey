@@ -11,14 +11,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class TipController extends AbstractController
 {
     #[Route('/front/tip', name: 'app_front_tip')]
-    public function index(): Response
+    public function index(TipRepository $tipRepository): Response
     {
+
+        $tips = $tipRepository->findAll();
+        // dd($tips);
+
         return $this->render('front/tip/index.html.twig', [
-            'controller_name' => 'TipController',
+            'tips' => $tips,
         ]);
     }
 
